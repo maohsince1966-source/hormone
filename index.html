@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>内分泌・ホルモン学習（全27種）</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --success: #16a34a;
+      --success-light: #dcfce7;
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      --warning: #d97706;
+      --warning-light: #fef3c7;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 540px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ヘッダー */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .header-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .header-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .sound-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 7px 13px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text);
+      transition: background-color 0.15s;
+    }
+
+    .sound-btn:active {
+      background: #e2e8f0;
+    }
+
+    /* 画面切り替え */
+    .screen {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    /* 共通カード・ボタン */
+    .section-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 15px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e2e8f0;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--muted);
+      margin: 0 0 10px 0;
+    }
+
+    .primary-btn {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.28);
+      transition: transform 0.1s, background-color 0.15s;
+    }
+
+    .primary-btn:active {
+      transform: scale(0.98);
+      background: var(--primary-dark);
+    }
+
+    .weak-btn {
+      background: var(--warning-light);
+      color: var(--warning);
+      border: 2px solid var(--warning);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.1s;
+    }
+
+    .weak-btn:active {
+      transform: scale(0.98);
+    }
+
+    .secondary-btn {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .secondary-btn:active {
+      background: #f1f5f9;
+    }
+
+    /* ==========================================
+       スタート画面：2大ゲームタブ
+       ========================================== */
+    .game-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: #e2e8f0;
+      padding: 5px;
+      border-radius: 14px;
+    }
+
+    .game-tab-btn {
+      background: transparent;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 8px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.18s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .game-tab-btn.active {
+      background: var(--card);
+      color: var(--primary);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+    }
+
+    .game-tab-sub {
+      font-size: 0.68rem;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .tab-panel {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .tab-panel.active {
+      display: flex;
+    }
+
+    /* 単元・モード選択ボタン */
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .select-btn {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 8px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .select-btn.selected {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .select-btn .sub {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .mode-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mode-btn {
+      text-align: left;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .best-record {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* 3つ集め説明ボックス */
+    .collect-intro-box {
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.84rem;
+      color: #1e3a8a;
+      line-height: 1.6;
+    }
+
+    .collect-organ-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .organ-chip {
+      background: #ffffff;
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ==========================================
+       共通ステータスバー
+       ========================================== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .combo-badge {
+      color: var(--warning);
+    }
+
+    .miss-badge {
+      color: var(--danger);
+    }
+
+    /* ==========================================
+       モード1：スピード・マッチング画面
+       ========================================== */
+    .board {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 10px;
+      flex: 1;
+      align-content: start;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .col-header {
+      font-size: 0.74rem;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 9px;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.1s, background-color 0.15s, border-color 0.15s, opacity 0.25s;
+      user-select: none;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+
+    .card.answer-card {
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .card.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      transform: scale(1.02);
+    }
+
+    .card.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: var(--success);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card.wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+      color: var(--danger);
+      animation: shake 0.35s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .hint-toast {
+      min-height: 58px;
+      background: var(--danger-light);
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      line-height: 1.4;
+    }
+
+    .hint-toast.show {
+      opacity: 1;
+    }
+
+    /* ==========================================
+       モード2：分泌器官 3つ集めチャレンジ画面
+       ========================================== */
+    .organ-banner {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+    }
+
+    .organ-target-prompt {
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height: 1.45;
+      margin: 2px 0 6px 0;
+    }
+
+    .organ-target-name {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 2px 10px;
+      border-radius: 8px;
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+
+    .select-counter-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.22);
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .collect-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      flex: 1;
+      align-content: start;
+    }
+
+    .collect-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 10px;
+      min-height: 88px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+      line-height: 1.35;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+      word-break: break-word;
+    }
+
+    .collect-card:active {
+      transform: scale(0.97);
+    }
+
+    .collect-card.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+    }
+
+    .collect-card.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: var(--success);
+    }
+
+    .collect-card.wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+      color: var(--danger);
+      animation: shake 0.38s;
+    }
+
+    .collect-feedback {
+      min-height: 66px;
+      border-radius: 12px;
+      padding: 11px 13px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.45;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .collect-feedback.show-ok {
+      opacity: 1;
+      background: var(--success-light);
+      border: 1px solid #86efac;
+      color: #166534;
+    }
+
+    .collect-feedback.show-ng {
+      opacity: 1;
+      background: var(--danger-light);
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+    }
+
+    /* ==========================================
+       リザルト画面
+       ========================================== */
+    .result-hero {
+      text-align: center;
+      padding: 18px 16px;
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    }
+
+    .new-record-badge {
+      display: inline-block;
+      background: var(--warning-light);
+      color: var(--warning);
+      border: 1px solid #fcd34d;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 3px 11px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+
+    .rank-badge {
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.05;
+      margin: 4px 0;
+    }
+
+    .rank-badge.S { color: #d97706; }
+    .rank-badge.A { color: #2563eb; }
+    .rank-badge.B { color: #16a34a; }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .stats-row strong {
+      display: block;
+      font-size: 1.02rem;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    .topic-box {
+      background: var(--primary-light);
+      border: 2px dashed var(--primary);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .topic-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .topic-target {
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .toggle-answer-btn {
+      background: #ffffff;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .topic-answer {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--primary-border);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .topic-answer.open {
+      display: block;
+    }
+
+    .miss-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 0;
+      font-size: 0.82rem;
+    }
+
+    .miss-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .miss-name {
+      font-weight: 800;
+      font-size: 0.94rem;
+      color: var(--danger);
+      margin-bottom: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 共通ヘッダー -->
+    <header>
+      <div class="header-title-wrap">
+        <h1>内分泌・ホルモン学習</h1>
+        <span class="header-sub">OT 1・2年次 生理学・内科学（全27種）</span>
+      </div>
+      <button id="soundToggle" class="sound-btn" type="button">🔊 音 ON</button>
+    </header>
+
+    <!-- ==========================================
+         1. スタート画面
+         ========================================== -->
+    <section id="startScreen" class="screen active">
+      <!-- 2大ゲームモード切り替えタブ -->
+      <div class="game-tabs">
+        <button id="tabMatchBtn" class="game-tab-btn active" type="button">
+          <span>⚡ スピード・マッチング</span>
+          <span class="game-tab-sub">2枚タップでペア作り</span>
+        </button>
+        <button id="tabCollectBtn" class="game-tab-btn" type="button">
+          <span>🎯 分泌器官 3つ集め</span>
+          <span class="game-tab-sub">同じ器官の3種を選ぶ</span>
+        </button>
+      </div>
+
+      <!-- パネル1：スピード・マッチング -->
+      <div id="panelMatch" class="tab-panel active">
+        <div class="section-card">
+          <p class="section-title">1. 単元を選ぶ（全27種）</p>
+          <div id="unitGrid" class="unit-grid"></div>
+        </div>
+
+        <div class="section-card">
+          <p class="section-title">2. 難易度を選ぶ</p>
+          <div class="mode-list">
+            <button class="select-btn mode-btn selected" type="button" data-mode="organ">
+              <span><strong>初級</strong>：ホルモン名 ↔ 分泌器官</span>
+              <span class="sub">まずはここから</span>
+            </button>
+            <button class="select-btn mode-btn" type="button" data-mode="action">
+              <span><strong>中級</strong>：ホルモン名 ↔ 主な作用</span>
+              <span class="sub">働きとセットで定着</span>
+            </button>
+            <button class="select-btn mode-btn" type="button" data-mode="clinical">
+              <span><strong>上級</strong>：ホルモン名 ↔ 国試・臨床ポイント</span>
+              <span class="sub">疾患・過剰/欠乏まで</span>
+            </button>
+          </div>
+        </div>
+
+        <button id="startMatchBtn" class="primary-btn" type="button">スタート！</button>
+        <button id="weakBtn" class="weak-btn" type="button" style="display:none;">
+          🔥 弱点だけ復習（<span id="weakCount">0</span>種）
+        </button>
+        <div id="matchBestRecord" class="best-record"></div>
+      </div>
+
+      <!-- パネル2：分泌器官 3つ集めチャレンジ -->
+      <div id="panelCollect" class="tab-panel">
+        <div class="section-card">
+          <p class="section-title">🎯 ルール説明</p>
+          <div class="collect-intro-box">
+            お題の<strong>「分泌器官」</strong>から分泌されるホルモンを、6枚のカードの中から<strong>3つ</strong>選びます。<br>
+            3枚目をタップした瞬間に自動判定！<strong>1回でも間違えると第1問からやり直し</strong>になる実力試しチャレンジです。
+            <div class="collect-organ-chips">
+              <span class="organ-chip">下垂体前葉</span>
+              <span class="organ-chip">甲状腺</span>
+              <span class="organ-chip">副腎皮質</span>
+              <span class="organ-chip">膵臓</span>
+              <span class="organ-chip">腎臓</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="startCollectBtn" class="primary-btn" type="button">3つ集めチャレンジ開始！（全5問）</button>
+        <div id="collectBestRecord" class="best-record"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         2. モード1 プレイ画面（スピード・マッチング）
+         ========================================== -->
+    <section id="matchPlayScreen" class="screen">
+      <div class="status-bar">
+        <span>⏱ <span id="matchTimer">0.0</span>秒</span>
+        <span>残り <span id="matchRemaining">0</span>ペア</span>
+        <span class="combo-badge">🔥 <span id="matchCombo">0</span>連続</span>
+      </div>
+
+      <div class="board">
+        <div class="column">
+          <div class="col-header">ホルモン名</div>
+          <div id="leftCol" class="column"></div>
+        </div>
+        <div class="column">
+          <div id="rightColHeader" class="col-header">分泌器官</div>
+          <div id="rightCol" class="column"></div>
+        </div>
+      </div>
+
+      <div id="hintToast" class="hint-toast"></div>
+      <button id="quitMatchBtn" class="secondary-btn" type="button">タイトルに戻る</button>
+    </section>
+
+    <!-- ==========================================
+         3. モード2 プレイ画面（分泌器官 3つ集め）
+         ========================================== -->
+    <section id="collectPlayScreen" class="screen">
+      <div class="status-bar">
+        <span>⏱ <span id="collectTimer">0.0</span>秒</span>
+        <span id="collectProgress">第1問 / 全5問</span>
+        <span class="miss-badge">ミス <span id="collectMiss">0</span>回</span>
+      </div>
+
+      <div class="organ-banner">
+        <div class="organ-target-prompt">
+          <span id="collectTargetOrgan" class="organ-target-name">【下垂体前葉】</span><br>
+          から分泌されるホルモンを3つ選ぼう！
+        </div>
+        <span id="collectSelectCount" class="select-counter-pill">選択中: 0 / 3</span>
+      </div>
+
+      <div id="collectGrid" class="collect-grid"></div>
+
+      <div id="collectFeedback" class="collect-feedback"></div>
+      <button id="quitCollectBtn" class="secondary-btn" type="button">タイトルに戻る</button>
+    </section>
+
+    <!-- ==========================================
+         4. 共通リザルト画面
+         ========================================== -->
+    <section id="resultScreen" class="screen">
+      <div class="result-hero">
+        <div id="newRecordBadge" class="new-record-badge" style="display:none;">🎉 ベストタイム更新！</div>
+        <div style="font-size:0.82rem; font-weight:700; color:var(--muted);">クリアランク</div>
+        <div id="rankBadge" class="rank-badge S">S</div>
+        <div id="resultSub" style="font-size:0.86rem; font-weight:800;"></div>
+        <div class="stats-row">
+          <div>クリアタイム<strong id="finalTime">0.0秒</strong></div>
+          <div>ミス回数<strong id="finalMiss">0回</strong></div>
+          <div id="finalThirdWrap"><span id="finalThirdLabel">最大連続</span><strong id="finalThirdValue">0回</strong></div>
+        </div>
+      </div>
+
+      <div class="topic-box">
+        <div class="topic-label">👥 グループ学習「ひとこと解説お題」</div>
+        <div id="topicTarget" class="topic-target"></div>
+        <div style="font-size:0.82rem;">このホルモンの<strong>分泌器官・作用・過剰または欠乏で起こる疾患</strong>を、班のメンバーに1分で説明してみよう！</div>
+        <button id="toggleTopicAnswer" class="toggle-answer-btn" type="button">解答・ヒントを見る</button>
+        <div id="topicAnswer" class="topic-answer"></div>
+      </div>
+
+      <div id="missSection" class="section-card" style="display:none;">
+        <p class="section-title">今回ミスしたホルモン一覧</p>
+        <div id="missList"></div>
+      </div>
+
+      <button id="retryBtn" class="primary-btn" type="button">もう一度チャレンジ</button>
+      <button id="backHomeBtn" class="secondary-btn" type="button">タイトルに戻る</button>
+    </section>
+  </div>
+
+  <script>
+    /**
+     * =========================================================================
+     * 1. 全27種ホルモン マスターデータ
+     * =========================================================================
+     */
+    const HORMONES = [
+      // 1. 下垂体（8種）
+      {
+        id: "h01", unit: "下垂体", name: "成長ホルモン（GH）", organ: "下垂体前葉",
+        action: "骨・軟部組織の成長促進、血糖値上昇",
+        clinical: "過剰で先端巨大症・巨人症、欠乏で下垂体性低身長症",
+        hint: "下垂体前葉から分泌。過剰で先端巨大症・巨人症、欠乏で下垂体性低身長症。"
+      },
+      {
+        id: "h02", unit: "下垂体", name: "プロラクチン（PRL）", organ: "下垂体前葉",
+        action: "乳腺の発達、乳汁産生促進",
+        clinical: "産後に分泌増加。過剰だと無月経・乳汁漏出の原因",
+        hint: "下垂体前葉から分泌。産後に分泌増加し、乳汁の「産生」を担う。"
+      },
+      {
+        id: "h03", unit: "下垂体", name: "副腎皮質刺激ホルモン（ACTH）", organ: "下垂体前葉",
+        action: "副腎皮質からの糖質コルチコイド分泌促進",
+        clinical: "ストレスで分泌増加。過剰でクッシング病",
+        hint: "下垂体前葉から分泌。ストレスで増加し、過剰でクッシング病。"
+      },
+      {
+        id: "h04", unit: "下垂体", name: "甲状腺刺激ホルモン（TSH）", organ: "下垂体前葉",
+        action: "甲状腺ホルモンの合成・分泌促進",
+        clinical: "甲状腺機能低下症ではフィードバックによりTSHが上昇",
+        hint: "下垂体前葉から分泌。甲状腺機能低下症ではフィードバックで上昇。"
+      },
+      {
+        id: "h05", unit: "下垂体", name: "卵胞刺激ホルモン（FSH）", organ: "下垂体前葉",
+        action: "卵胞の発育促進、精子の形成促進",
+        clinical: "性腺刺激ホルモン（ゴナドトロピン）の1つ",
+        hint: "下垂体前葉から分泌。卵胞の発育・精子形成を促す性腺刺激ホルモン。"
+      },
+      {
+        id: "h06", unit: "下垂体", name: "黄体形成ホルモン（LH）", organ: "下垂体前葉",
+        action: "排卵誘発、黄体形成、テストステロン分泌促進",
+        clinical: "排卵直前に急上昇する（LHサージ）",
+        hint: "下垂体前葉から分泌。排卵直前に急上昇（LHサージ）して排卵を促す。"
+      },
+      {
+        id: "h07", unit: "下垂体", name: "バソプレシン（ADH）", organ: "下垂体後葉",
+        action: "腎集合管での水の再吸収促進（抗利尿）、血管収縮",
+        clinical: "視床下部で産生され後葉から分泌。欠乏で尿崩症（多尿）",
+        hint: "下垂体後葉から分泌（産生は視床下部）。欠乏すると尿崩症（多尿）。"
+      },
+      {
+        id: "h08", unit: "下垂体", name: "オキシトシン", organ: "下垂体後葉",
+        action: "子宮平滑筋の収縮（分娩）、射乳（乳汁排出）",
+        clinical: "プロラクチンは『産生』、オキシトシンは『排出（射乳）』と区別",
+        hint: "下垂体後葉から分泌。プロラクチン（産生）と区別して『排出（射乳）』と覚える。"
+      },
+
+      // 2. 甲状腺・副腎（8種）
+      {
+        id: "h09", unit: "甲状腺・副腎", name: "T3：トリヨードサイロニン", organ: "甲状腺",
+        action: "基礎代謝の亢進、熱産生、発育促進（活性が強い）",
+        clinical: "ヨウ素3つ（トリ）。過剰でバセドウ病、欠乏で橋本病・クレチン症",
+        hint: "甲状腺から分泌。ヨウ素3つ（トリ）で活性が強い。過剰でバセドウ病。"
+      },
+      {
+        id: "h10", unit: "甲状腺・副腎", name: "T4：サイロキシン", organ: "甲状腺",
+        action: "基礎代謝の亢進、熱産生、発育促進（血中量が多い）",
+        clinical: "ヨウ素4つ（テトラ）。末梢組織で活性の強いT3に変換される",
+        hint: "甲状腺から分泌。ヨウ素4つ（テトラ）。末梢組織でT3に変換されて働く。"
+      },
+      {
+        id: "h11", unit: "甲状腺・副腎", name: "カルシトニン", organ: "甲状腺",
+        action: "血中Ca2+濃度の低下、骨吸収抑制",
+        clinical: "甲状腺の傍濾胞細胞から分泌。パラトルモンと拮抗する",
+        hint: "甲状腺（傍濾胞細胞）から分泌。血中Ca2+を下げ、パラトルモンと拮抗。"
+      },
+      {
+        id: "h12", unit: "甲状腺・副腎", name: "パラトルモン（PTH）", organ: "上皮小体（副甲状腺）",
+        action: "血中Ca2+濃度の上昇、骨吸収促進",
+        clinical: "過剰だと骨がもろくなり、尿路結石や病的骨折を起こしやすい",
+        hint: "上皮小体（副甲状腺）から分泌。血中Ca2+を上げ、過剰で尿路結石・病的骨折。"
+      },
+      {
+        id: "h13", unit: "甲状腺・副腎", name: "アルドステロン", organ: "副腎皮質",
+        action: "腎臓でのNa+再吸収・K+排泄促進、血圧上昇",
+        clinical: "球状層から分泌。過剰で原発性アルドステロン症（高血圧・低K血症）",
+        hint: "副腎皮質（球状層）から分泌。過剰で高血圧・低K血症を起こす。"
+      },
+      {
+        id: "h14", unit: "甲状腺・副腎", name: "コルチゾール", organ: "副腎皮質",
+        action: "血糖値上昇、抗炎症作用、抗ストレス作用",
+        clinical: "束状層から分泌。過剰でクッシング症候群（満月様顔貌・中心性肥満）",
+        hint: "副腎皮質（束状層）から分泌。過剰でクッシング症候群（満月様顔貌）。"
+      },
+      {
+        id: "h15", unit: "甲状腺・副腎", name: "副腎アンドロゲン", organ: "副腎皮質",
+        action: "蛋白同化作用、第二次性徴（体毛の発育など）",
+        clinical: "網状層から分泌。男女ともに副腎皮質から分泌される男性ホルモン",
+        hint: "副腎皮質（網状層）から男女ともに分泌される男性ホルモン。"
+      },
+      {
+        id: "h16", unit: "甲状腺・副腎", name: "アドレナリン・ノルアドレナリン", organ: "副腎髄質",
+        action: "心拍数・血圧上昇、血糖値上昇、気管支拡張",
+        clinical: "交感神経の興奮で分泌。過剰産生する腫瘍が褐色細胞腫",
+        hint: "副腎髄質から交感神経興奮で分泌。過剰産生する腫瘍は褐色細胞腫。"
+      },
+
+      // 3. 膵臓・性腺・その他（11種）
+      {
+        id: "h17", unit: "膵臓・性腺・その他", name: "インスリン", organ: "膵臓",
+        action: "血糖値の低下（唯一の血糖降下ホルモン）",
+        clinical: "膵島B細胞から分泌。欠乏・作用不足で糖尿病",
+        hint: "膵臓（膵島B細胞）から分泌される唯一の血糖降下ホルモン。欠乏で糖尿病。"
+      },
+      {
+        id: "h18", unit: "膵臓・性腺・その他", name: "グルカゴン", organ: "膵臓",
+        action: "血糖値の上昇（肝グリコーゲンの分解促進）",
+        clinical: "膵島A細胞から分泌。インスリンと拮抗して低血糖を防ぐ",
+        hint: "膵臓（膵島A細胞）から分泌。肝グリコーゲン分解で血糖値を上げる。"
+      },
+      {
+        id: "h19", unit: "膵臓・性腺・その他", name: "ソマトスタチン", organ: "膵臓",
+        action: "インスリン・グルカゴン・成長ホルモンの分泌抑制",
+        clinical: "膵島D細胞や視床下部から分泌される『ブレーキ役』のホルモン",
+        hint: "膵臓（膵島D細胞）や視床下部から分泌される『ブレーキ役』ホルモン。"
+      },
+      {
+        id: "h20", unit: "膵臓・性腺・その他", name: "エストロゲン（卵胞ホルモン）", organ: "卵巣",
+        action: "子宮内膜の増殖、女性的二次性徴、骨量維持",
+        clinical: "閉経後に減少すると骨粗鬆症のリスクが急増する",
+        hint: "卵巣から分泌。骨量維持に重要で、閉経後に減少すると骨粗鬆症リスク増。"
+      },
+      {
+        id: "h21", unit: "膵臓・性腺・その他", name: "プロゲステロン（黄体ホルモン）", organ: "卵巣",
+        action: "妊娠の維持、基礎体温の上昇",
+        clinical: "排卵後の黄体から分泌され、着床しやすい環境を作る",
+        hint: "卵巣（排卵後の黄体）から分泌。妊娠維持と基礎体温上昇に働く。"
+      },
+      {
+        id: "h22", unit: "膵臓・性腺・その他", name: "テストステロン", organ: "精巣",
+        action: "男性的二次性徴、筋・骨格の発達、精子形成",
+        clinical: "精巣のライディッヒ細胞から分泌される代表的な男性ホルモン",
+        hint: "精巣（ライディッヒ細胞）から分泌される代表的な男性ホルモン。"
+      },
+      {
+        id: "h23", unit: "膵臓・性腺・その他", name: "メラトニン", organ: "松果体",
+        action: "概日リズム（サーカディアンリズム）の調節、睡眠誘導",
+        clinical: "夜間（暗所）に分泌が増え、強い光を浴びると抑制される",
+        hint: "松果体から夜間に分泌が増加し、概日リズム調節・睡眠誘導に働く。"
+      },
+      {
+        id: "h24", unit: "膵臓・性腺・その他", name: "エリスロポエチン", organ: "腎臓",
+        action: "骨髄での赤血球産生促進",
+        clinical: "慢性腎不全で分泌が低下すると腎性貧血になる",
+        hint: "腎臓から分泌。骨髄での赤血球産生を促し、低下すると腎性貧血。"
+      },
+      {
+        id: "h25", unit: "膵臓・性腺・その他", name: "レニン", organ: "腎臓",
+        action: "血圧上昇（レニン・アンジオテンシン・アルドステロン系）",
+        clinical: "腎血流が低下すると分泌され、血圧を上げるスイッチになる",
+        hint: "腎臓から腎血流低下時に分泌され、血圧を上げるRAA系のスイッチになる。"
+      },
+      {
+        id: "h26", unit: "膵臓・性腺・その他", name: "活性型ビタミンD（カルシトリオール）", organ: "腎臓",
+        action: "腸管からのCa2+吸収促進、骨形成の補助",
+        clinical: "腎臓で最終活性化される。腎不全で不足すると骨軟化症・低Ca血症",
+        hint: "腎臓で最終活性化。腸管からのCa2+吸収を促し、不足で骨軟化症。"
+      },
+      {
+        id: "h27", unit: "膵臓・性腺・その他", name: "心房性ナトリウム利尿ペプチド（ANP）", organ: "心臓（心房）",
+        action: "利尿作用（Na+と水の排泄）、血圧低下",
+        clinical: "心房が血液で引き伸ばされると分泌され、心臓の負担を減らす",
+        hint: "心臓（心房）から分泌。Na+と水の排泄を促して血圧を下げ心臓負担を軽減。"
+      }
+    ];
+
+    // モード2「分泌器官 3つ集めチャレンジ」の対象5器官
+    const COLLECT_TARGET_ORGANS = [
+      "下垂体前葉",
+      "甲状腺",
+      "副腎皮質",
+      "膵臓",
+      "腎臓"
+    ];
+
+    /**
+     * =========================================================================
+     * 2. ストレージ・サウンド・ユーティリティ
+     * =========================================================================
+     */
+    const STORAGE_WEAK_KEY = "ot_hormone_weak_ids_v2";
+    const STORAGE_BEST_KEY = "ot_hormone_best_times_v2";
+
+    let soundOn = true;
+    let audioCtx = null;
+
+    function playSound(type) {
+      if (!soundOn) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+        const now = audioCtx.currentTime;
+        const tone = (freq, dur, wave, vol, delay = 0) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = wave;
+          osc.frequency.setValueAtTime(freq, now + delay);
+          gain.gain.setValueAtTime(vol, now + delay);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + delay + dur);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + delay);
+          osc.stop(now + delay + dur);
+        };
+
+        if (type === "tap") {
+          tone(540, 0.05, "sine", 0.06);
+        } else if (type === "ok") {
+          tone(659.25, 0.1, "sine", 0.12, 0);
+          tone(880.0, 0.18, "sine", 0.13, 0.07);
+        } else if (type === "ng") {
+          tone(210, 0.16, "sawtooth", 0.1, 0);
+          tone(165, 0.2, "sawtooth", 0.1, 0.09);
+        } else if (type === "clear") {
+          tone(523.25, 0.11, "sine", 0.12, 0);
+          tone(659.25, 0.11, "sine", 0.12, 0.09);
+          tone(783.99, 0.11, "sine", 0.12, 0.18);
+          tone(1046.5, 0.34, "sine", 0.14, 0.27);
+        }
+      } catch (e) {}
+    }
+
+    function getWeakIds() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(STORAGE_WEAK_KEY) || "[]");
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveWeakIds(ids) {
+      try {
+        localStorage.setItem(STORAGE_WEAK_KEY, JSON.stringify([...new Set(ids)]));
+      } catch (e) {}
+    }
+
+    function addWeakId(id) {
+      const list = getWeakIds();
+      if (!list.includes(id)) {
+        list.push(id);
+        saveWeakIds(list);
+      }
+    }
+
+    function removeWeakId(id) {
+      saveWeakIds(getWeakIds().filter(x => x !== id));
+    }
+
+    function getBestTimes() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_BEST_KEY) || "{}");
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function updateBestTime(key, sec) {
+      const data = getBestTimes();
+      const prev = data[key];
+      if (typeof prev !== "number" || sec < prev) {
+        data[key] = sec;
+        try {
+          localStorage.setItem(STORAGE_BEST_KEY, JSON.stringify(data));
+        } catch (e) {}
+        return true;
+      }
+      return false;
+    }
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    /**
+     * =========================================================================
+     * 3. 画面状態管理
+     * =========================================================================
+     */
+    let activeGameTab = "match"; // "match" | "collect"
+    let selectedUnit = "下垂体";
+    let selectedMode = "organ";  // "organ" | "action" | "clinical"
+    let lastPlayedType = "match"; // "match" | "weak" | "collect"
+
+    // 共通タイマー
+    let timerInterval = null;
+    let startTime = 0;
+    let elapsedSec = 0;
+
+    // モード1（マッチング）状態
+    let matchState = {
+      isWeakMode: false,
+      playedList: [],
+      queue: [],
+      currentBatch: [],
+      selectedLeft: null,
+      selectedRight: null,
+      matchedInBatch: 0,
+      missCount: 0,
+      combo: 0,
+      maxCombo: 0,
+      missedSet: new Set(),
+      hintTimer: null
+    };
+
+    // モード2（3つ集め）状態
+    let collectState = {
+      organOrder: [],
+      currentIdx: 0,
+      cards: [],
+      selectedIds: new Set(),
+      missCount: 0,
+      missedSet: new Set(),
+      isLocked: false
+    };
+
+    function showScreen(id) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    /**
+     * =========================================================================
+     * 4. スタート画面描画
+     * =========================================================================
+     */
+    function renderStartScreen() {
+      // タブ表示切り替え
+      document.getElementById("tabMatchBtn").classList.toggle("active", activeGameTab === "match");
+      document.getElementById("tabCollectBtn").classList.toggle("active", activeGameTab === "collect");
+      document.getElementById("panelMatch").classList.toggle("active", activeGameTab === "match");
+      document.getElementById("panelCollect").classList.toggle("active", activeGameTab === "collect");
+
+      // 単元ボタン生成
+      const unitOptions = [
+        { id: "下垂体", label: "下垂体", sub: "8種" },
+        { id: "甲状腺・副腎", label: "甲状腺・副腎", sub: "8種" },
+        { id: "膵臓・性腺・その他", label: "膵臓・性腺・その他", sub: "11種" },
+        { id: "ALL", label: "全単元ランダム", sub: "10種出題" }
+      ];
+
+      const unitGrid = document.getElementById("unitGrid");
+      unitGrid.innerHTML = "";
+      unitOptions.forEach(u => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "select-btn" + (selectedUnit === u.id ? " selected" : "");
+        btn.innerHTML = `${u.label}<span class="sub">${u.sub}</span>`;
+        btn.onclick = () => {
+          playSound("tap");
+          selectedUnit = u.id;
+          renderStartScreen();
+        };
+        unitGrid.appendChild(btn);
+      });
+
+      // 弱点復習ボタン
+      const weakIds = getWeakIds().filter(id => HORMONES.some(h => h.id === id));
+      const weakBtn = document.getElementById("weakBtn");
+      if (weakIds.length > 0) {
+        weakBtn.style.display = "block";
+        document.getElementById("weakCount").textContent = String(weakIds.length);
+      } else {
+        weakBtn.style.display = "none";
+      }
+
+      // ベストタイム表示
+      const bests = getBestTimes();
+      const matchKey = `match_${selectedUnit}_${selectedMode}`;
+      const matchBest = bests[matchKey];
+      document.getElementById("matchBestRecord").textContent =
+        typeof matchBest === "number"
+          ? `この条件のベストタイム：${matchBest.toFixed(1)}秒`
+          : "まだクリア記録がありません";
+
+      const collectBest = bests["collect_5organs"];
+      document.getElementById("collectBestRecord").textContent =
+        typeof collectBest === "number"
+          ? `3つ集めチャレンジ ベストタイム：${collectBest.toFixed(1)}秒`
+          : "まだクリア記録がありません";
+    }
+
+    /**
+     * =========================================================================
+     * 5. モード1：スピード・マッチング
+     * =========================================================================
+     */
+    function getMatchAnswerText(h, mode) {
+      if (mode === "organ") return h.organ;
+      if (mode === "action") return h.action;
+      return h.clinical;
+    }
+
+    function startMatchGame(isWeakMode = false) {
+      playSound("tap");
+      lastPlayedType = isWeakMode ? "weak" : "match";
+
+      let targetList = [];
+      if (isWeakMode) {
+        const weakIds = getWeakIds();
+        targetList = HORMONES.filter(h => weakIds.includes(h.id));
+        if (targetList.length === 0) {
+          renderStartScreen();
+          return;
+        }
+      } else if (selectedUnit === "ALL") {
+        targetList = shuffle(HORMONES).slice(0, 10);
+      } else {
+        targetList = HORMONES.filter(h => h.unit === selectedUnit);
+      }
+
+      matchState = {
+        isWeakMode,
+        playedList: [...targetList],
+        queue: shuffle(targetList),
+        currentBatch: [],
+        selectedLeft: null,
+        selectedRight: null,
+        matchedInBatch: 0,
+        missCount: 0,
+        combo: 0,
+        maxCombo: 0,
+        missedSet: new Set(),
+        hintTimer: null
+      };
+
+      const headerMap = {
+        organ: "分泌器官",
+        action: "主な作用",
+        clinical: "国試・臨床ポイント"
+      };
+      document.getElementById("rightColHeader").textContent = headerMap[selectedMode];
+      document.getElementById("matchCombo").textContent = "0";
+      document.getElementById("hintToast").classList.remove("show");
+
+      showScreen("matchPlayScreen");
+
+      stopTimer();
+      startTime = performance.now();
+      elapsedSec = 0;
+      document.getElementById("matchTimer").textContent = "0.0";
+      timerInterval = setInterval(() => {
+        elapsedSec = (performance.now() - startTime) / 1000;
+        document.getElementById("matchTimer").textContent = elapsedSec.toFixed(1);
+      }, 100);
+
+      nextMatchBatch();
+    }
+
+    function nextMatchBatch() {
+      if (matchState.queue.length === 0) {
+        finishMatchGame();
+        return;
+      }
+
+      // 同一解答テキストが1バッチ内でなるべく被らないように最大5枚選出
+      const batch = [];
+      const usedAnswers = new Set();
+      const leftover = [];
+
+      for (const h of matchState.queue) {
+        const ans = getMatchAnswerText(h, selectedMode);
+        if (batch.length < 5 && !usedAnswers.has(ans)) {
+          batch.push(h);
+          usedAnswers.add(ans);
+        } else {
+          leftover.push(h);
+        }
+      }
+      while (batch.length < 5 && leftover.length > 0) {
+        batch.push(leftover.shift());
+      }
+
+      matchState.currentBatch = batch;
+      matchState.queue = leftover;
+      matchState.matchedInBatch = 0;
+      matchState.selectedLeft = null;
+      matchState.selectedRight = null;
+
+      updateMatchRemaining();
+      renderMatchBoard();
+    }
+
+    function updateMatchRemaining() {
+      const rem = matchState.queue.length + (matchState.currentBatch.length - matchState.matchedInBatch);
+      document.getElementById("matchRemaining").textContent = String(rem);
+    }
+
+    function renderMatchBoard() {
+      const leftCol = document.getElementById("leftCol");
+      const rightCol = document.getElementById("rightCol");
+      leftCol.innerHTML = "";
+      rightCol.innerHTML = "";
+
+      const leftItems = shuffle(matchState.currentBatch);
+      const rightItems = shuffle(matchState.currentBatch);
+
+      leftItems.forEach(h => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.textContent = h.name;
+        card.dataset.answer = getMatchAnswerText(h, selectedMode);
+        card.onclick = () => selectMatchCard("left", card, h);
+        leftCol.appendChild(card);
+      });
+
+      rightItems.forEach(h => {
+        const card = document.createElement("div");
+        card.className = "card answer-card";
+        card.textContent = getMatchAnswerText(h, selectedMode);
+        card.dataset.answer = getMatchAnswerText(h, selectedMode);
+        card.onclick = () => selectMatchCard("right", card, h);
+        rightCol.appendChild(card);
+      });
+    }
+
+    function selectMatchCard(side, el, hormone) {
+      if (el.classList.contains("correct")) return;
+      playSound("tap");
+
+      if (side === "left") {
+        if (matchState.selectedLeft) matchState.selectedLeft.el.classList.remove("selected");
+        matchState.selectedLeft = { el, hormone };
+        el.classList.add("selected");
+      } else {
+        if (matchState.selectedRight) matchState.selectedRight.el.classList.remove("selected");
+        matchState.selectedRight = { el, hormone };
+        el.classList.add("selected");
+      }
+
+      if (matchState.selectedLeft && matchState.selectedRight) {
+        checkMatchPair();
+      }
+    }
+
+    function checkMatchPair() {
+      const l = matchState.selectedLeft;
+      const r = matchState.selectedRight;
+      matchState.selectedLeft = null;
+      matchState.selectedRight = null;
+
+      // 解答テキストが一致すれば正解（同一器官・作用が並んだ場合も正しく判定）
+      const isCorrect = l.el.dataset.answer === r.el.dataset.answer;
+
+      if (isCorrect) {
+        playSound("ok");
+        l.el.classList.remove("selected");
+        r.el.classList.remove("selected");
+        l.el.classList.add("correct");
+        r.el.classList.add("correct");
+
+        matchState.combo++;
+        if (matchState.combo > matchState.maxCombo) {
+          matchState.maxCombo = matchState.combo;
+        }
+        document.getElementById("matchCombo").textContent = String(matchState.combo);
+
+        // 弱点復習モードでノーミス正解なら弱点から自動解除
+        if (matchState.isWeakMode && !matchState.missedSet.has(l.hormone.id)) {
+          removeWeakId(l.hormone.id);
+        }
+
+        matchState.matchedInBatch++;
+        updateMatchRemaining();
+
+        if (matchState.matchedInBatch === matchState.currentBatch.length) {
+          setTimeout(nextMatchBatch, 320);
+        }
+      } else {
+        playSound("ng");
+        matchState.missCount++;
+        matchState.combo = 0;
+        document.getElementById("matchCombo").textContent = "0";
+
+        matchState.missedSet.add(l.hormone.id);
+        addWeakId(l.hormone.id);
+
+        l.el.classList.remove("selected");
+        r.el.classList.remove("selected");
+        l.el.classList.add("wrong");
+        r.el.classList.add("wrong");
+
+        setTimeout(() => {
+          l.el.classList.remove("wrong");
+          r.el.classList.remove("wrong");
+        }, 380);
+
+        showMatchHint(`💡 ${l.hormone.name}【${l.hormone.organ}】：${l.hormone.clinical}`);
+      }
+    }
+
+    function showMatchHint(text) {
+      const toast = document.getElementById("hintToast");
+      toast.textContent = text;
+      toast.classList.add("show");
+      if (matchState.hintTimer) clearTimeout(matchState.hintTimer);
+      matchState.hintTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3600);
+    }
+
+    function finishMatchGame() {
+      stopTimer();
+      elapsedSec = (performance.now() - startTime) / 1000;
+      playSound("clear");
+
+      let isNewRecord = false;
+      if (!matchState.isWeakMode) {
+        const key = `match_${selectedUnit}_${selectedMode}`;
+        isNewRecord = updateBestTime(key, elapsedSec);
+      }
+
+      const missedList = matchState.playedList.filter(h => matchState.missedSet.has(h.id));
+      renderResultScreen({
+        timeSec: elapsedSec,
+        misses: matchState.missCount,
+        isNewRecord,
+        thirdLabel: "最大連続",
+        thirdValue: `${matchState.maxCombo}回`,
+        missedList,
+        topicPool: missedList.length > 0 ? missedList : matchState.playedList
+      });
+    }
+
+    /**
+     * =========================================================================
+     * 6. モード2：分泌器官 3つ集めチャレンジ
+     * =========================================================================
+     */
+    function startCollectGame() {
+      playSound("tap");
+      lastPlayedType = "collect";
+
+      collectState = {
+        organOrder: shuffle(COLLECT_TARGET_ORGANS),
+        currentIdx: 0,
+        cards: [],
+        selectedIds: new Set(),
+        missCount: 0,
+        missedSet: new Set(),
+        isLocked: false
+      };
+
+      document.getElementById("collectMiss").textContent = "0";
+      showScreen("collectPlayScreen");
+
+      stopTimer();
+      startTime = performance.now();
+      elapsedSec = 0;
+      document.getElementById("collectTimer").textContent = "0.0";
+      timerInterval = setInterval(() => {
+        elapsedSec = (performance.now() - startTime) / 1000;
+        document.getElementById("collectTimer").textContent = elapsedSec.toFixed(1);
+      }, 100);
+
+      loadCollectQuestion();
+    }
+
+    function loadCollectQuestion() {
+      const targetOrgan = collectState.organOrder[collectState.currentIdx];
+      collectState.selectedIds = new Set();
+      collectState.isLocked = false;
+
+      // 正解器官からランダム3枚＋他器官からダミー3枚
+      const correctPool = shuffle(HORMONES.filter(h => h.organ === targetOrgan)).slice(0, 3);
+      const dummyPool = shuffle(HORMONES.filter(h => h.organ !== targetOrgan)).slice(0, 3);
+      collectState.cards = shuffle([...correctPool, ...dummyPool]);
+
+      document.getElementById("collectProgress").textContent =
+        `第${collectState.currentIdx + 1}問 / 全${COLLECT_TARGET_ORGANS.length}問`;
+      document.getElementById("collectTargetOrgan").textContent = `【${targetOrgan}】`;
+      document.getElementById("collectSelectCount").textContent = "選択中: 0 / 3";
+
+      const fb = document.getElementById("collectFeedback");
+      fb.className = "collect-feedback";
+      fb.textContent = "";
+
+      renderCollectCards();
+    }
+
+    function renderCollectCards() {
+      const grid = document.getElementById("collectGrid");
+      grid.innerHTML = "";
+
+      collectState.cards.forEach(h => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "collect-card" + (collectState.selectedIds.has(h.id) ? " selected" : "");
+        btn.dataset.id = h.id;
+        btn.textContent = h.name;
+        btn.onclick = () => onTapCollectCard(h);
+        grid.appendChild(btn);
+      });
+    }
+
+    function onTapCollectCard(hormone) {
+      if (collectState.isLocked) return;
+
+      if (collectState.selectedIds.has(hormone.id)) {
+        // 選択解除
+        playSound("tap");
+        collectState.selectedIds.delete(hormone.id);
+      } else {
+        if (collectState.selectedIds.size >= 3) return;
+        playSound("tap");
+        collectState.selectedIds.add(hormone.id);
+      }
+
+      document.getElementById("collectSelectCount").textContent =
+        `選択中: ${collectState.selectedIds.size} / 3`;
+      renderCollectCards();
+
+      // 3枚目をタップした瞬間に自動判定
+      if (collectState.selectedIds.size === 3) {
+        judgeCollectQuestion();
+      }
+    }
+
+    function judgeCollectQuestion() {
+      collectState.isLocked = true;
+      const targetOrgan = collectState.organOrder[collectState.currentIdx];
+      const chosenHormones = collectState.cards.filter(h => collectState.selectedIds.has(h.id));
+      const wrongHormones = chosenHormones.filter(h => h.organ !== targetOrgan);
+
+      const cardEls = document.querySelectorAll("#collectGrid .collect-card");
+      const fb = document.getElementById("collectFeedback");
+
+      if (wrongHormones.length === 0) {
+        // 正解！
+        playSound("ok");
+        cardEls.forEach(el => {
+          if (collectState.selectedIds.has(el.dataset.id)) {
+            el.classList.remove("selected");
+            el.classList.add("correct");
+          }
+        });
+        fb.className = "collect-feedback show-ok";
+        fb.textContent = `⭕ 正解！【${targetOrgan}】の3種をバッチリ見抜きました！`;
+
+        setTimeout(() => {
+          collectState.currentIdx++;
+          if (collectState.currentIdx >= collectState.organOrder.length) {
+            finishCollectGame();
+          } else {
+            loadCollectQuestion();
+          }
+        }, 800);
+      } else {
+        // 不正解：ミス加算・弱点記録・1.8秒後に第1問からやり直し
+        playSound("ng");
+        collectState.missCount++;
+        document.getElementById("collectMiss").textContent = String(collectState.missCount);
+
+        wrongHormones.forEach(wh => {
+          collectState.missedSet.add(wh.id);
+          addWeakId(wh.id);
+        });
+
+        cardEls.forEach(el => {
+          if (collectState.selectedIds.has(el.dataset.id)) {
+            el.classList.remove("selected");
+            const isWrong = wrongHormones.some(wh => wh.id === el.dataset.id);
+            el.classList.add(isWrong ? "wrong" : "correct");
+          }
+        });
+
+        const firstWrong = wrongHormones[0];
+        fb.className = "collect-feedback show-ng";
+        fb.textContent = `❌ 不正解！${firstWrong.name}は【${firstWrong.organ}】から分泌されます。最初からやり直し！`;
+
+        setTimeout(() => {
+          collectState.organOrder = shuffle(COLLECT_TARGET_ORGANS);
+          collectState.currentIdx = 0;
+          loadCollectQuestion();
+        }, 1800);
+      }
+    }
+
+    function finishCollectGame() {
+      stopTimer();
+      elapsedSec = (performance.now() - startTime) / 1000;
+      playSound("clear");
+
+      const isNewRecord = updateBestTime("collect_5organs", elapsedSec);
+      const missedList = HORMONES.filter(h => collectState.missedSet.has(h.id));
+      const targetPool = HORMONES.filter(h => COLLECT_TARGET_ORGANS.includes(h.organ));
+
+      renderResultScreen({
+        timeSec: elapsedSec,
+        misses: collectState.missCount,
+        isNewRecord,
+        thirdLabel: "クリア問題数",
+        thirdValue: "全5問",
+        missedList,
+        topicPool: missedList.length > 0 ? missedList : targetPool
+      });
+    }
+
+    /**
+     * =========================================================================
+     * 7. 共通リザルト画面
+     * =========================================================================
+     */
+    function renderResultScreen({ timeSec, misses, isNewRecord, thirdLabel, thirdValue, missedList, topicPool }) {
+      // ランク判定（ミス0: S / ミス1〜2: A / それ以外: B）
+      let rank = "B";
+      let subText = "粘り強くクリアできました！ミスを見直してリベンジしよう！";
+      if (misses === 0) {
+        rank = "S";
+        subText = "パーフェクト！内分泌の理解がバッチリ定着しています！";
+      } else if (misses <= 2) {
+        rank = "A";
+        subText = "素晴らしい！あと少しでパーフェクトクリアです！";
+      }
+
+      document.getElementById("newRecordBadge").style.display = isNewRecord ? "inline-block" : "none";
+      const rankEl = document.getElementById("rankBadge");
+      rankEl.textContent = rank;
+      rankEl.className = `rank-badge ${rank}`;
+
+      document.getElementById("resultSub").textContent = subText;
+      document.getElementById("finalTime").textContent = `${timeSec.toFixed(1)}秒`;
+      document.getElementById("finalMiss").textContent = `${misses}回`;
+      document.getElementById("finalThirdLabel").textContent = thirdLabel;
+      document.getElementById("finalThirdValue").textContent = thirdValue;
+
+      // グループ学習「ひとこと解説お題」
+      const topic = topicPool[Math.floor(Math.random() * topicPool.length)];
+      document.getElementById("topicTarget").textContent = `お題：${topic.name}`;
+      const topicAns = document.getElementById("topicAnswer");
+      topicAns.classList.remove("open");
+      topicAns.innerHTML = `
+        <div><strong>分泌器官：</strong>${topic.organ}</div>
+        <div><strong>主な作用：</strong>${topic.action}</div>
+        <div style="margin-top:4px; color:var(--primary);"><strong>💡 国試・臨床ポイント：</strong>${topic.clinical}</div>
+      `;
+
+      // ミス一覧（ミスがある場合のみ表示）
+      const missSection = document.getElementById("missSection");
+      const missListEl = document.getElementById("missList");
+      if (missedList.length > 0) {
+        missSection.style.display = "block";
+        missListEl.innerHTML = missedList.map(h => `
+          <div class="miss-item">
+            <div class="miss-name">${h.name}</div>
+            <div><strong>分泌器官：</strong>${h.organ}</div>
+            <div><strong>主な作用：</strong>${h.action}</div>
+            <div style="color:var(--muted); margin-top:2px;">💡 ${h.clinical}</div>
+          </div>
+        `).join("");
+      } else {
+        missSection.style.display = "none";
+      }
+
+      showScreen("resultScreen");
+    }
+
+    /**
+     * =========================================================================
+     * 8. イベント登録・初期化
+     * =========================================================================
+     */
+    document.getElementById("soundToggle").onclick = (e) => {
+      soundOn = !soundOn;
+      e.target.textContent = soundOn ? "🔊 音 ON" : "🔇 音 OFF";
+      if (soundOn) playSound("tap");
+    };
+
+    document.getElementById("tabMatchBtn").onclick = () => {
+      playSound("tap");
+      activeGameTab = "match";
+      renderStartScreen();
+    };
+
+    document.getElementById("tabCollectBtn").onclick = () => {
+      playSound("tap");
+      activeGameTab = "collect";
+      renderStartScreen();
+    };
+
+    document.querySelectorAll(".mode-btn").forEach(btn => {
+      btn.onclick = () => {
+        playSound("tap");
+        document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        selectedMode = btn.dataset.mode;
+        renderStartScreen();
+      };
+    });
+
+    document.getElementById("startMatchBtn").onclick = () => startMatchGame(false);
+    document.getElementById("weakBtn").onclick = () => startMatchGame(true);
+    document.getElementById("startCollectBtn").onclick = () => startCollectGame();
+
+    document.getElementById("quitMatchBtn").onclick = () => {
+      stopTimer();
+      playSound("tap");
+      renderStartScreen();
+      showScreen("startScreen");
+    };
+
+    document.getElementById("quitCollectBtn").onclick = () => {
+      stopTimer();
+      playSound("tap");
+      renderStartScreen();
+      showScreen("startScreen");
+    };
+
+    document.getElementById("toggleTopicAnswer").onclick = () => {
+      playSound("tap");
+      document.getElementById("topicAnswer").classList.toggle("open");
+    };
+
+    document.getElementById("retryBtn").onclick = () => {
+      if (lastPlayedType === "collect") {
+        startCollectGame();
+      } else if (lastPlayedType === "weak") {
+        if (getWeakIds().length === 0) {
+          renderStartScreen();
+          showScreen("startScreen");
+        } else {
+          startMatchGame(true);
+        }
+      } else {
+        startMatchGame(false);
+      }
+    };
+
+    document.getElementById("backHomeBtn").onclick = () => {
+      playSound("tap");
+      renderStartScreen();
+      showScreen("startScreen");
+    };
+
+    // 初期描画
+    renderStartScreen();
+  </script>
+</body>
+</html>

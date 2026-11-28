@@ -3,24 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>内分泌・ホルモン学習（全27種）</title>
+  <title>🧪 内分泌・ホルモンマスター（国試過去問30問付き）</title>
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-light: #eff6ff;
-      --primary-border: #bfdbfe;
-      --success: #16a34a;
-      --success-light: #dcfce7;
-      --danger: #dc2626;
-      --danger-light: #fee2e2;
-      --warning: #d97706;
-      --warning-light: #fef3c7;
+      /* ベース＆メインカラー（インディゴ〜バイオレット基調） */
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --primary-light: #eef2ff;
+      --primary-border: #c7d2fe;
+
+      --sub: #0ea5e9;
+      --sub-light: #f0f9ff;
+      --sub-border: #bae6fd;
+
+      /* ステータスカラー */
+      --success: #10b981;
+      --success-dark: #059669;
+      --success-light: #ecfdf5;
+      --success-border: #6ee7b7;
+
+      --danger: #ef4444;
+      --danger-dark: #dc2626;
+      --danger-light: #fef2f2;
+      --danger-border: #fca5a5;
+
+      --warning: #ea580c;
+      --warning-light: #fff7ed;
+      --warning-border: #fdba74;
+
+      /* 国試モード（ゴールド系） */
+      --gold: #d97706;
+      --gold-dark: #92400e;
+      --gold-bg: #fef3c7;
+      --gold-border: #f59e0b;
+
       --bg: #f8fafc;
       --card: #ffffff;
-      --text: #1e293b;
+      --text: #0f172a;
+      --text-sub: #334155;
       --muted: #64748b;
       --border: #cbd5e1;
+      --border-light: #e2e8f0;
     }
 
     * {
@@ -38,30 +61,34 @@
     }
 
     .container {
-      max-width: 540px;
+      max-width: 520px;
       margin: 0 auto;
       min-height: 100vh;
-      padding: 16px;
+      padding: 14px 14px 16px;
       display: flex;
       flex-direction: column;
     }
 
-    /* ヘッダー */
+    /* ==========================================
+       ヘッダー
+       ========================================== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      gap: 8px;
     }
 
     .header-title-wrap {
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
 
     h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
+      font-size: 1.15rem;
+      font-weight: 900;
       margin: 0;
       color: var(--primary);
       letter-spacing: -0.02em;
@@ -70,18 +97,19 @@
     .header-sub {
       font-size: 0.72rem;
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .sound-btn {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 7px 13px;
-      font-size: 0.8rem;
+      padding: 7px 12px;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
       color: var(--text);
+      flex-shrink: 0;
       transition: background-color 0.15s;
     }
 
@@ -89,11 +117,13 @@
       background: #e2e8f0;
     }
 
-    /* 画面切り替え */
+    /* ==========================================
+       画面切替・共通UI
+       ========================================== */
     .screen {
       display: none;
       flex-direction: column;
-      gap: 14px;
+      gap: 13px;
       flex: 1;
     }
 
@@ -101,39 +131,40 @@
       display: flex;
     }
 
-    /* 共通カード・ボタン */
     .section-card {
       background: var(--card);
       border-radius: 14px;
-      padding: 15px;
+      padding: 14px;
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-light);
     }
 
     .section-title {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 800;
       color: var(--muted);
       margin: 0 0 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .primary-btn {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #ffffff;
       border: none;
       border-radius: 12px;
-      padding: 15px;
-      font-size: 1rem;
+      padding: 14px;
+      font-size: 0.96rem;
       font-weight: 800;
       cursor: pointer;
       width: 100%;
-      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.28);
-      transition: transform 0.1s, background-color 0.15s;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.28);
+      transition: transform 0.1s, opacity 0.15s;
     }
 
     .primary-btn:active {
       transform: scale(0.98);
-      background: var(--primary-dark);
     }
 
     .weak-btn {
@@ -142,7 +173,7 @@
       border: 2px solid var(--warning);
       border-radius: 12px;
       padding: 12px;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 800;
       cursor: pointer;
       width: 100%;
@@ -158,8 +189,8 @@
       color: var(--text);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px;
-      font-size: 0.9rem;
+      padding: 11px;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       width: 100%;
@@ -170,14 +201,14 @@
     }
 
     /* ==========================================
-       スタート画面：2大ゲームタブ
+       1段3等分タブナビゲーション
        ========================================== */
     .game-tabs {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
       background: #e2e8f0;
-      padding: 5px;
+      padding: 4px;
       border-radius: 14px;
     }
 
@@ -185,8 +216,8 @@
       background: transparent;
       border: none;
       border-radius: 10px;
-      padding: 11px 8px;
-      font-size: 0.84rem;
+      padding: 9px 4px;
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--muted);
       cursor: pointer;
@@ -204,7 +235,7 @@
     }
 
     .game-tab-sub {
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       font-weight: 600;
       opacity: 0.85;
     }
@@ -212,99 +243,159 @@
     .tab-panel {
       display: none;
       flex-direction: column;
-      gap: 14px;
+      gap: 13px;
     }
 
     .tab-panel.active {
       display: flex;
     }
 
-    /* 単元・モード選択ボタン */
-    .unit-grid {
+    /* モード切替トグル（タブ①） */
+    .mode-toggle-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
 
-    .select-btn {
-      background: var(--bg);
+    .mode-toggle-btn {
+      background: #f8fafc;
       border: 2px solid var(--border);
-      border-radius: 10px;
-      padding: 11px 8px;
-      font-size: 0.84rem;
+      border-radius: 11px;
+      padding: 10px 8px;
+      font-size: 0.82rem;
       font-weight: 800;
-      color: var(--text);
+      color: var(--muted);
       cursor: pointer;
       text-align: center;
       transition: all 0.15s;
     }
 
-    .select-btn.selected {
+    .mode-toggle-btn.selected {
       background: var(--primary-light);
       border-color: var(--primary);
-      color: var(--primary);
+      color: var(--primary-dark);
     }
 
-    .select-btn .sub {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
+    /* コース選択ボタン */
     .mode-list {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .mode-btn {
+    .select-btn {
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 11px;
+      padding: 11px 12px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
       text-align: left;
-      padding: 12px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 8px;
+      transition: all 0.15s;
+    }
+
+    .select-btn.selected {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    .select-btn-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .select-btn .sub {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .select-btn.selected .sub {
+      color: var(--primary);
+    }
+
+    .record-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.71rem;
+      font-weight: 800;
+      padding: 3px 7px;
+      border-radius: 9px;
+      background: #f1f5f9;
+      color: var(--muted);
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .record-pill.has-record {
+      background: #ffffff;
+      border: 1px solid var(--primary-border);
+      color: var(--text);
+    }
+
+    .mini-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 19px;
+      height: 19px;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
+    .rank-S { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-border); }
+    .rank-A { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
+    .rank-B { background: var(--success-light); color: var(--success-dark); border: 1px solid var(--success-border); }
+
+    .intro-box {
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      border-radius: 12px;
+      padding: 12px 13px;
+      font-size: 0.8rem;
+      color: #312e81;
+      line-height: 1.55;
+    }
+
+    .challenge-preview-list {
+      margin: 10px 0 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .challenge-preview-list li {
+      background: #ffffff;
+      border: 1px solid var(--primary-border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--primary-dark);
     }
 
     .best-record {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--muted);
       text-align: center;
     }
 
-    /* 3つ集め説明ボックス */
-    .collect-intro-box {
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      border-radius: 12px;
-      padding: 14px;
-      font-size: 0.84rem;
-      color: #1e3a8a;
-      line-height: 1.6;
-    }
-
-    .collect-organ-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    .organ-chip {
-      background: #ffffff;
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      font-size: 0.76rem;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
     /* ==========================================
-       共通ステータスバー
+       共通ステータスバー & アニメーション
        ========================================== */
     .status-bar {
       display: flex;
@@ -313,28 +404,31 @@
       background: var(--card);
       padding: 10px 14px;
       border-radius: 12px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 800;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-light);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
       font-variant-numeric: tabular-nums;
     }
 
-    .combo-badge {
-      color: var(--warning);
-    }
+    .combo-badge { color: var(--gold); }
+    .miss-badge { color: var(--danger); }
 
-    .miss-badge {
-      color: var(--danger);
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
     }
 
     /* ==========================================
-       モード1：スピード・マッチング画面
+       タブ①：⚡ マッチング プレイ画面
        ========================================== */
     .board {
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: 10px;
+      grid-template-columns: 1fr 1.28fr;
+      gap: 9px;
       flex: 1;
       align-content: start;
     }
@@ -342,21 +436,21 @@
     .column {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 9px;
     }
 
     .col-header {
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       text-align: center;
       color: var(--muted);
       font-weight: 800;
     }
 
-    .card {
+    .match-card {
       background: var(--card);
       border: 2px solid var(--border);
       border-radius: 12px;
-      padding: 11px 9px;
+      padding: 10px 8px;
       min-height: 70px;
       display: flex;
       align-items: center;
@@ -368,59 +462,50 @@
       transition: transform 0.1s, background-color 0.15s, border-color 0.15s, opacity 0.25s;
       user-select: none;
       word-break: break-word;
-      line-height: 1.3;
+      line-height: 1.32;
     }
 
-    .card.answer-card {
+    .match-card.answer-card {
       font-size: 0.76rem;
       font-weight: 700;
-      line-height: 1.35;
     }
 
-    .card.selected {
+    .match-card.selected {
       border-color: var(--primary);
       background: var(--primary-light);
-      color: var(--primary);
+      color: var(--primary-dark);
       transform: scale(1.02);
     }
 
-    .card.correct {
+    .match-card.correct {
       border-color: var(--success);
       background: var(--success-light);
-      color: var(--success);
+      color: var(--success-dark);
       opacity: 0;
       pointer-events: none;
     }
 
-    .card.wrong {
+    .match-card.wrong {
       border-color: var(--danger);
       background: var(--danger-light);
-      color: var(--danger);
+      color: var(--danger-dark);
       animation: shake 0.35s;
     }
 
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20% { transform: translateX(-6px); }
-      40% { transform: translateX(6px); }
-      60% { transform: translateX(-4px); }
-      80% { transform: translateX(4px); }
-    }
-
     .hint-toast {
-      min-height: 58px;
+      min-height: 60px;
       background: var(--danger-light);
-      border: 1px solid #fca5a5;
+      border: 1px solid var(--danger-border);
       color: #991b1b;
       border-radius: 12px;
       padding: 10px 12px;
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       font-weight: 700;
       display: flex;
       align-items: center;
       opacity: 0;
       transition: opacity 0.2s;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .hint-toast.show {
@@ -428,39 +513,30 @@
     }
 
     /* ==========================================
-       モード2：分泌器官 3つ集めチャレンジ画面
+       タブ②：🎯 3つ集めチャレンジ プレイ画面
        ========================================== */
-    .organ-banner {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    .challenge-banner {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #ffffff;
       border-radius: 14px;
-      padding: 16px;
+      padding: 15px 14px;
       text-align: center;
-      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.25);
     }
 
-    .organ-target-prompt {
-      font-size: 1.05rem;
+    .challenge-question-title {
+      font-size: 0.98rem;
       font-weight: 900;
       line-height: 1.45;
-      margin: 2px 0 6px 0;
-    }
-
-    .organ-target-name {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.18);
-      padding: 2px 10px;
-      border-radius: 8px;
-      font-size: 1.25rem;
-      margin-bottom: 4px;
+      margin: 0 0 8px 0;
     }
 
     .select-counter-pill {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.22);
-      padding: 3px 12px;
+      background: rgba(255, 255, 255, 0.24);
+      padding: 3px 13px;
       border-radius: 20px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 800;
     }
 
@@ -477,13 +553,12 @@
       border: 2px solid var(--border);
       border-radius: 14px;
       padding: 16px 10px;
-      min-height: 88px;
+      min-height: 84px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 800;
       color: var(--text);
       cursor: pointer;
@@ -491,7 +566,6 @@
       user-select: none;
       line-height: 1.35;
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
-      word-break: break-word;
     }
 
     .collect-card:active {
@@ -501,33 +575,33 @@
     .collect-card.selected {
       border-color: var(--primary);
       background: var(--primary-light);
-      color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+      color: var(--primary-dark);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
     }
 
     .collect-card.correct {
       border-color: var(--success);
       background: var(--success-light);
-      color: var(--success);
+      color: var(--success-dark);
     }
 
     .collect-card.wrong {
       border-color: var(--danger);
       background: var(--danger-light);
-      color: var(--danger);
+      color: var(--danger-dark);
       animation: shake 0.38s;
     }
 
     .collect-feedback {
-      min-height: 66px;
+      min-height: 76px;
       border-radius: 12px;
       padding: 11px 13px;
-      font-size: 0.82rem;
+      font-size: 0.79rem;
       font-weight: 800;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      line-height: 1.45;
+      line-height: 1.5;
       opacity: 0;
       transition: opacity 0.2s;
     }
@@ -535,35 +609,184 @@
     .collect-feedback.show-ok {
       opacity: 1;
       background: var(--success-light);
-      border: 1px solid #86efac;
-      color: #166534;
+      border: 1px solid var(--success-border);
+      color: #065f46;
     }
 
     .collect-feedback.show-ng {
       opacity: 1;
       background: var(--danger-light);
-      border: 1px solid #fca5a5;
+      border: 1px solid var(--danger-border);
       color: #991b1b;
     }
 
     /* ==========================================
-       リザルト画面
+       タブ③：📖 まとめ表（チートシート）
+       ========================================== */
+    .rules-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rule-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .rule-card strong {
+      display: block;
+      color: var(--primary-dark);
+      font-size: 0.81rem;
+      margin-bottom: 2px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-family: inherit;
+      background: #f8fafc;
+      color: var(--text);
+      margin-bottom: 8px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .filter-chip {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.71rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .cheat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cheat-item {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 0.78rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cheat-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #f1f5f9;
+      flex-wrap: wrap;
+    }
+
+    .cheat-name {
+      font-size: 0.92rem;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .badge-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .sol-badge {
+      font-size: 0.66rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .sol-water {
+      background: var(--sub-light);
+      color: #0369a1;
+      border: 1px solid var(--sub-border);
+    }
+
+    .sol-lipid {
+      background: var(--gold-bg);
+      color: var(--gold-dark);
+      border: 1px solid var(--gold-border);
+    }
+
+    .organ-badge {
+      font-size: 0.66rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 20px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    .cheat-hint {
+      background: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 5px 8px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 2px;
+    }
+
+    /* ==========================================
+       共通リザルト画面
        ========================================== */
     .result-hero {
       text-align: center;
-      padding: 18px 16px;
+      padding: 16px;
       background: var(--card);
       border-radius: 14px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-light);
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
     }
 
     .new-record-badge {
       display: inline-block;
-      background: var(--warning-light);
-      color: var(--warning);
-      border: 1px solid #fcd34d;
-      font-size: 0.76rem;
+      background: var(--gold-bg);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      font-size: 0.75rem;
       font-weight: 800;
       padding: 3px 11px;
       border-radius: 20px;
@@ -572,15 +795,15 @@
 
     .rank-badge {
       display: inline-block;
-      font-size: 3rem;
+      font-size: 2.9rem;
       font-weight: 900;
       line-height: 1.05;
       margin: 4px 0;
     }
 
     .rank-badge.S { color: #d97706; }
-    .rank-badge.A { color: #2563eb; }
-    .rank-badge.B { color: #16a34a; }
+    .rank-badge.A { color: #4f46e5; }
+    .rank-badge.B { color: #10b981; }
 
     .stats-row {
       display: flex;
@@ -588,13 +811,13 @@
       margin-top: 12px;
       padding-top: 12px;
       border-top: 1px solid #f1f5f9;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--muted);
     }
 
     .stats-row strong {
       display: block;
-      font-size: 1.02rem;
+      font-size: 1rem;
       color: var(--text);
       margin-top: 2px;
     }
@@ -603,20 +826,21 @@
       background: var(--primary-light);
       border: 2px dashed var(--primary);
       border-radius: 14px;
-      padding: 14px;
+      padding: 13px;
     }
 
     .topic-label {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 800;
       color: var(--primary);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .topic-target {
-      font-size: 1.08rem;
+      font-size: 0.98rem;
       font-weight: 800;
       margin-bottom: 6px;
+      line-height: 1.45;
     }
 
     .toggle-answer-btn {
@@ -624,11 +848,11 @@
       border: 1px solid var(--primary);
       color: var(--primary);
       border-radius: 8px;
-      padding: 7px 12px;
-      font-size: 0.8rem;
+      padding: 6px 12px;
+      font-size: 0.78rem;
       font-weight: 800;
       cursor: pointer;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .topic-answer {
@@ -636,7 +860,7 @@
       margin-top: 10px;
       padding-top: 10px;
       border-top: 1px solid var(--primary-border);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       line-height: 1.55;
     }
 
@@ -644,108 +868,576 @@
       display: block;
     }
 
-    .miss-item {
-      border-bottom: 1px solid #e2e8f0;
-      padding: 10px 0;
-      font-size: 0.82rem;
+    .review-item {
+      border-bottom: 1px solid var(--border-light);
+      padding: 9px 0;
+      font-size: 0.79rem;
+      line-height: 1.5;
     }
 
-    .miss-item:last-child {
+    .review-item:last-child {
       border-bottom: none;
       padding-bottom: 0;
     }
 
-    .miss-name {
+    .review-name {
+      font-weight: 900;
+      font-size: 0.88rem;
+      color: var(--danger-dark);
+      margin-bottom: 2px;
+    }
+
+    .perfect-box {
+      background: var(--success-light);
+      border: 1px solid var(--success-border);
+      color: #065f46;
+      border-radius: 12px;
+      padding: 13px;
+      text-align: center;
+      font-size: 0.85rem;
       font-weight: 800;
-      font-size: 0.94rem;
-      color: var(--danger);
-      margin-bottom: 3px;
+    }
+
+    /* ==========================================
+       【共通モジュール】国家試験過去問モード（.kokushi-*）
+       ========================================== */
+    .kokushi-banner-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      border: none;
+      border-radius: 14px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 0.89rem;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+      transition: transform 0.12s;
+      text-align: left;
+    }
+
+    .kokushi-banner-btn:active {
+      transform: scale(0.98);
+    }
+
+    .kokushi-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .kokushi-banner-sub {
+      font-size: 0.73rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      padding: 2px 9px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .kokushi-hero-card {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #f59e0b;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .kokushi-hero-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #92400e;
+      margin: 0;
+    }
+
+    .kokushi-progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #92400e;
+    }
+
+    .kokushi-progress-track {
+      width: 100%;
+      height: 11px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid #fcd34d;
+    }
+
+    .kokushi-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #d97706);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .kokushi-course-btn {
+      width: 100%;
+      background: var(--card);
+      border: 2px solid var(--border-light);
+      border-radius: 13px;
+      padding: 14px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    .kokushi-course-btn:active {
+      transform: scale(0.98);
+      border-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    .kokushi-course-btn.primary-course {
+      border-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    .kokushi-course-btn.weak-course {
+      border-color: #f97316;
+      background: #fff7ed;
+    }
+
+    .kokushi-course-main {
+      font-size: 0.93rem;
+      font-weight: 900;
+      color: var(--text);
+      display: block;
+    }
+
+    .kokushi-course-btn.weak-course .kokushi-course-main {
+      color: #c2410c;
+    }
+
+    .kokushi-course-sub {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .kokushi-play-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 10px 13px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .kokushi-meta-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .kokushi-meta-badge {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+      padding: 3px 9px;
+      border-radius: 8px;
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .kokushi-type-badge {
+      padding: 3px 9px;
+      border-radius: 8px;
+      font-size: 0.73rem;
+      font-weight: 900;
+    }
+
+    .kokushi-type-badge.single {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .kokushi-type-badge.multi {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+    }
+
+    .kokushi-question-card {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    }
+
+    .kokushi-question-text {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .kokushi-choices-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .kokushi-choice-btn {
+      width: 100%;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--text);
+      font-size: 0.87rem;
+      font-weight: 700;
+      line-height: 1.42;
+    }
+
+    .kokushi-choice-btn:active:not(:disabled) {
+      transform: scale(0.985);
+    }
+
+    .kokushi-choice-btn:disabled {
+      cursor: default;
+    }
+
+    .kokushi-choice-num {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .kokushi-choice-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .kokushi-choice-btn.selected .kokushi-choice-num {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .kokushi-choice-btn.is-correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: #065f46;
+    }
+
+    .kokushi-choice-btn.is-correct .kokushi-choice-num {
+      background: var(--success);
+      color: #ffffff;
+      border-color: var(--success);
+    }
+
+    .kokushi-choice-btn.is-wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+      color: #991b1b;
+    }
+
+    .kokushi-choice-btn.is-wrong .kokushi-choice-num {
+      background: var(--danger);
+      color: #ffffff;
+      border-color: var(--danger);
+    }
+
+    .kokushi-explain-card {
+      background: var(--card);
+      border-radius: 15px;
+      padding: 15px;
+      border: 2px solid var(--border-light);
+      display: none;
+      flex-direction: column;
+      gap: 11px;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    .kokushi-explain-card.open {
+      display: flex;
+    }
+
+    .kokushi-explain-card.ok {
+      border-color: var(--success-border);
+      background: #f0fdf4;
+    }
+
+    .kokushi-explain-card.ng {
+      border-color: var(--danger-border);
+      background: #fef2f2;
+    }
+
+    .kokushi-judge-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .kokushi-judge-title.ok { color: #059669; }
+    .kokushi-judge-title.ng { color: #dc2626; }
+
+    .kokushi-point-box {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-light);
+      font-size: 0.83rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .kokushi-notes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-light);
+      font-size: 0.77rem;
+      line-height: 1.48;
+    }
+
+    .kokushi-note-row {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    .kokushi-note-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .kokushi-note-num {
+      font-weight: 900;
+      color: var(--muted);
+      flex-shrink: 0;
+      min-width: 18px;
+    }
+
+    .kokushi-note-row.ans-row {
+      color: #059669;
+      font-weight: 800;
+    }
+
+    .kokushi-next-btn {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.96rem;
+      font-weight: 900;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 3px 8px rgba(217, 119, 6, 0.28);
+    }
+
+    .kokushi-next-btn:active {
+      transform: scale(0.98);
+    }
+
+    .kokushi-miss-item {
+      border-bottom: 1px solid var(--border-light);
+      padding: 10px 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .kokushi-miss-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .kokushi-miss-meta {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #b45309;
+      margin-bottom: 2px;
+    }
+
+    .kokushi-miss-q {
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- 共通ヘッダー -->
+    <!-- ヘッダー -->
     <header>
       <div class="header-title-wrap">
-        <h1>内分泌・ホルモン学習</h1>
-        <span class="header-sub">OT 1・2年次 生理学・内科学（全27種）</span>
+        <h1>🧪 内分泌・ホルモンマスター</h1>
+        <span class="header-sub">主要22ホルモン ＋ 国試過去問30問</span>
       </div>
       <button id="soundToggle" class="sound-btn" type="button">🔊 音 ON</button>
     </header>
 
     <!-- ==========================================
-         1. スタート画面
+         1. トップ画面（国試バナー ＋ 3等分タブ）
          ========================================== -->
     <section id="startScreen" class="screen active">
-      <!-- 2大ゲームモード切り替えタブ -->
-      <div class="game-tabs">
+      <!-- 【共通モジュール入口】国家試験過去問バナー -->
+      <button id="kokushiEntryBtn" class="kokushi-banner-btn" type="button">
+        <span class="kokushi-banner-left">
+          <span>🎓 国家試験過去問に挑戦</span>
+          <span id="kokushiEntryBadge" class="kokushi-banner-sub">クリア済 0 / 30問</span>
+        </span>
+        <span>▶</span>
+      </button>
+
+      <!-- 1段3等分タブナビゲーション -->
+      <nav class="game-tabs" aria-label="学習モード切替">
         <button id="tabMatchBtn" class="game-tab-btn active" type="button">
-          <span>⚡ スピード・マッチング</span>
-          <span class="game-tab-sub">2枚タップでペア作り</span>
+          <span>⚡ マッチング</span>
+          <span class="game-tab-sub">主要22ホルモン</span>
         </button>
         <button id="tabCollectBtn" class="game-tab-btn" type="button">
-          <span>🎯 分泌器官 3つ集め</span>
-          <span class="game-tab-sub">同じ器官の3種を選ぶ</span>
+          <span>🎯 3つ集め</span>
+          <span class="game-tab-sub">全5問連続</span>
         </button>
-      </div>
+        <button id="tabSummaryBtn" class="game-tab-btn" type="button">
+          <span>📖 まとめ表</span>
+          <span class="game-tab-sub">5大ルール・一覧</span>
+        </button>
+      </nav>
 
-      <!-- パネル1：スピード・マッチング -->
+      <!-- タブ①：⚡ マッチング -->
       <div id="panelMatch" class="tab-panel active">
         <div class="section-card">
-          <p class="section-title">1. 単元を選ぶ（全27種）</p>
-          <div id="unitGrid" class="unit-grid"></div>
-        </div>
-
-        <div class="section-card">
-          <p class="section-title">2. 難易度を選ぶ</p>
-          <div class="mode-list">
-            <button class="select-btn mode-btn selected" type="button" data-mode="organ">
-              <span><strong>初級</strong>：ホルモン名 ↔ 分泌器官</span>
-              <span class="sub">まずはここから</span>
+          <p class="section-title">1. 学習モードを選ぶ</p>
+          <div class="mode-toggle-grid">
+            <button id="modeOrganBtn" class="mode-toggle-btn selected" type="button" data-mode="organ">
+              器官 ↔ ホルモン
             </button>
-            <button class="select-btn mode-btn" type="button" data-mode="action">
-              <span><strong>中級</strong>：ホルモン名 ↔ 主な作用</span>
-              <span class="sub">働きとセットで定着</span>
-            </button>
-            <button class="select-btn mode-btn" type="button" data-mode="clinical">
-              <span><strong>上級</strong>：ホルモン名 ↔ 国試・臨床ポイント</span>
-              <span class="sub">疾患・過剰/欠乏まで</span>
+            <button id="modeActionBtn" class="mode-toggle-btn" type="button" data-mode="action">
+              ホルモン ↔ 主な作用
             </button>
           </div>
         </div>
 
-        <button id="startMatchBtn" class="primary-btn" type="button">スタート！</button>
-        <button id="weakBtn" class="weak-btn" type="button" style="display:none;">
-          🔥 弱点だけ復習（<span id="weakCount">0</span>種）
+        <div class="section-card">
+          <p class="section-title">2. コースを選ぶ</p>
+          <div id="matchCourseList" class="mode-list"></div>
+        </div>
+
+        <button id="startMatchBtn" class="primary-btn" type="button">マッチングをスタート！</button>
+        <button id="weakMatchBtn" class="weak-btn" type="button" style="display:none;">
+          🔥 弱点だけ復習（<span id="weakMatchCount">0</span>問）
         </button>
-        <div id="matchBestRecord" class="best-record"></div>
+        <div id="matchBestText" class="best-record"></div>
       </div>
 
-      <!-- パネル2：分泌器官 3つ集めチャレンジ -->
+      <!-- タブ②：🎯 3つ集めチャレンジ（全5問連続クリア） -->
       <div id="panelCollect" class="tab-panel">
         <div class="section-card">
-          <p class="section-title">🎯 ルール説明</p>
-          <div class="collect-intro-box">
-            お題の<strong>「分泌器官」</strong>から分泌されるホルモンを、6枚のカードの中から<strong>3つ</strong>選びます。<br>
-            3枚目をタップした瞬間に自動判定！<strong>1回でも間違えると第1問からやり直し</strong>になる実力試しチャレンジです。
-            <div class="collect-organ-chips">
-              <span class="organ-chip">下垂体前葉</span>
-              <span class="organ-chip">甲状腺</span>
-              <span class="organ-chip">副腎皮質</span>
-              <span class="organ-chip">膵臓</span>
-              <span class="organ-chip">腎臓</span>
-            </div>
+          <p class="section-title">🎯 ルール説明（全5問連続クリア）</p>
+          <div class="intro-box">
+            国試超頻出の5テーマについて、6枚の中から当てはまる<strong>3枚</strong>をタップして集めます（1・2枚目は再タップで解除可）。<br>
+            3枚目をタップした瞬間に自動判定！間違えるとダミーの正体とヒントが表示され、<strong>第1問からリトライ</strong>になります。
+            <ul class="challenge-preview-list">
+              <li>第1問：下垂体前葉から分泌されるホルモンを3つ選べ</li>
+              <li>第2問：血糖値を上昇させるホルモンを3つ選べ</li>
+              <li>第3問：副腎皮質から分泌されるステロイドホルモンを3つ選べ</li>
+              <li>第4問：脂溶性ホルモン（ステロイド・甲状腺）を3つ選べ</li>
+              <li>第5問：腎臓または下垂体後葉から分泌されるホルモンを3つ選べ</li>
+            </ul>
           </div>
         </div>
 
         <button id="startCollectBtn" class="primary-btn" type="button">3つ集めチャレンジ開始！（全5問）</button>
-        <div id="collectBestRecord" class="best-record"></div>
+        <div id="collectBestText" class="best-record"></div>
+      </div>
+
+      <!-- タブ③：📖 まとめ表（チートシート） -->
+      <div id="panelSummary" class="tab-panel">
+        <div class="section-card" style="padding: 13px;">
+          <p class="section-title">🔥 国試の超頻出 5大ルール</p>
+          <div class="rules-stack">
+            <div class="rule-card">
+              <strong>① 下垂体後葉は2つだけ（オキシトシン・バソプレシン）</strong>
+              産生は<strong>視床下部</strong>で行われ、軸索を通って下垂体後葉から分泌される！
+            </div>
+            <div class="rule-card">
+              <strong>② 血糖値を下げるのはインスリンだけ（膵島B細胞）</strong>
+              上げるホルモンは複数：<strong>グルカゴン・アドレナリン・コルチゾール・成長ホルモン（GH）</strong>。
+            </div>
+            <div class="rule-card">
+              <strong>③ 血中Ca濃度：上げる＝パラトルモン ／ 下げる＝カルシトニン</strong>
+              <strong>パラトルモン</strong>（副甲状腺）は骨吸収促進で血中Ca↑、<strong>カルシトニン</strong>（甲状腺C細胞）は骨吸収抑制で血中Ca↓。
+            </div>
+            <div class="rule-card">
+              <strong>④ 副腎：皮質＝ステロイド ／ 髄質＝カテコールアミン</strong>
+              皮質は外から球状層(アルドステロン)・束状層(コルチゾール)・網状層(アンドロゲン)。髄質は<strong>交感神経の節前線維が直接支配</strong>！
+            </div>
+            <div class="rule-card">
+              <strong>⑤ 腎臓の2大ホルモン：レニン と エリスロポエチン</strong>
+              <strong>レニン</strong>は血圧上昇（RAA系）、<strong>エリスロポエチン</strong>は赤血球造血を促進（欠乏で腎性貧血）。
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card" style="padding: 13px;">
+          <p class="section-title">
+            <span>📋 全22ホルモン 検索・一覧</span>
+            <span id="summaryCountText" style="color:var(--primary);">22項目</span>
+          </p>
+          <input id="summarySearch" class="search-input" type="search" placeholder="キーワード検索（例：下垂体、血糖、Ca、ステロイド、腎臓…）">
+          <div id="summaryFilters" class="filter-chips"></div>
+          <div id="cheatList" class="cheat-list"></div>
+        </div>
       </div>
     </section>
 
     <!-- ==========================================
-         2. モード1 プレイ画面（スピード・マッチング）
+         2. プレイ画面（タブ①：⚡ マッチング）
          ========================================== -->
     <section id="matchPlayScreen" class="screen">
       <div class="status-bar">
@@ -756,272 +1448,341 @@
 
       <div class="board">
         <div class="column">
-          <div class="col-header">ホルモン名</div>
-          <div id="leftCol" class="column"></div>
+          <div id="matchLeftHeader" class="col-header">分泌器官</div>
+          <div id="matchLeftCol" class="column"></div>
         </div>
         <div class="column">
-          <div id="rightColHeader" class="col-header">分泌器官</div>
-          <div id="rightCol" class="column"></div>
+          <div id="matchRightHeader" class="col-header">ホルモン</div>
+          <div id="matchRightCol" class="column"></div>
         </div>
       </div>
 
-      <div id="hintToast" class="hint-toast"></div>
+      <div id="matchHintToast" class="hint-toast"></div>
       <button id="quitMatchBtn" class="secondary-btn" type="button">タイトルに戻る</button>
     </section>
 
     <!-- ==========================================
-         3. モード2 プレイ画面（分泌器官 3つ集め）
+         3. プレイ画面（タブ②：🎯 3つ集めチャレンジ）
          ========================================== -->
     <section id="collectPlayScreen" class="screen">
       <div class="status-bar">
         <span>⏱ <span id="collectTimer">0.0</span>秒</span>
-        <span id="collectProgress">第1問 / 全5問</span>
+        <span id="collectProgress">第1問 / 5</span>
         <span class="miss-badge">ミス <span id="collectMiss">0</span>回</span>
       </div>
 
-      <div class="organ-banner">
-        <div class="organ-target-prompt">
-          <span id="collectTargetOrgan" class="organ-target-name">【下垂体前葉】</span><br>
-          から分泌されるホルモンを3つ選ぼう！
-        </div>
+      <div class="challenge-banner">
+        <div id="collectQuestionTitle" class="challenge-question-title">お題</div>
         <span id="collectSelectCount" class="select-counter-pill">選択中: 0 / 3</span>
       </div>
 
       <div id="collectGrid" class="collect-grid"></div>
 
       <div id="collectFeedback" class="collect-feedback"></div>
+      <button id="collectRetryFromOneBtn" class="weak-btn" type="button" style="display:none;">
+        ↺ 第1問からリトライ
+      </button>
       <button id="quitCollectBtn" class="secondary-btn" type="button">タイトルに戻る</button>
     </section>
 
     <!-- ==========================================
-         4. 共通リザルト画面
+         4. 共通リザルト画面（基礎学習用）
          ========================================== -->
     <section id="resultScreen" class="screen">
       <div class="result-hero">
         <div id="newRecordBadge" class="new-record-badge" style="display:none;">🎉 ベストタイム更新！</div>
-        <div style="font-size:0.82rem; font-weight:700; color:var(--muted);">クリアランク</div>
+        <div style="font-size:0.8rem; font-weight:700; color:var(--muted);">クリアランク</div>
         <div id="rankBadge" class="rank-badge S">S</div>
-        <div id="resultSub" style="font-size:0.86rem; font-weight:800;"></div>
+        <div id="resultSub" style="font-size:0.84rem; font-weight:800;"></div>
         <div class="stats-row">
           <div>クリアタイム<strong id="finalTime">0.0秒</strong></div>
           <div>ミス回数<strong id="finalMiss">0回</strong></div>
-          <div id="finalThirdWrap"><span id="finalThirdLabel">最大連続</span><strong id="finalThirdValue">0回</strong></div>
+          <div><span id="finalThirdLabel">最大連続</span><strong id="finalThirdValue">0回</strong></div>
         </div>
       </div>
 
+      <!-- グループ学習「ひとこと解説お題」 -->
       <div class="topic-box">
         <div class="topic-label">👥 グループ学習「ひとこと解説お題」</div>
         <div id="topicTarget" class="topic-target"></div>
-        <div style="font-size:0.82rem;">このホルモンの<strong>分泌器官・作用・過剰または欠乏で起こる疾患</strong>を、班のメンバーに1分で説明してみよう！</div>
         <button id="toggleTopicAnswer" class="toggle-answer-btn" type="button">解答・ヒントを見る</button>
         <div id="topicAnswer" class="topic-answer"></div>
       </div>
 
-      <div id="missSection" class="section-card" style="display:none;">
-        <p class="section-title">今回ミスしたホルモン一覧</p>
-        <div id="missList"></div>
+      <!-- ミス復習リスト -->
+      <div class="section-card">
+        <p id="reviewSectionTitle" class="section-title">今回ミスした項目</p>
+        <div id="reviewList"></div>
       </div>
 
-      <button id="retryBtn" class="primary-btn" type="button">もう一度チャレンジ</button>
+      <button id="retryBtn" class="primary-btn" type="button">もう一度チャレンジ（リベンジ）</button>
       <button id="backHomeBtn" class="secondary-btn" type="button">タイトルに戻る</button>
     </section>
+
+    <!-- ==========================================
+         5. 【共通モジュール】国家試験過去問モード画面群
+         ========================================== -->
+    <!-- 5-1. 過去問スタート画面 -->
+    <section id="kokushiStartScreen" class="screen">
+      <div class="kokushi-hero-card">
+        <h2 class="kokushi-hero-title">🎓 国家試験過去問に挑戦（ホルモン・全30問）</h2>
+        <div class="kokushi-progress-row">
+          <span id="kokushiStartProgressText">クリア済 0 / 30問</span>
+          <span id="kokushiStartProgressPct">0%</span>
+        </div>
+        <div class="kokushi-progress-track">
+          <div id="kokushiStartProgressBar" class="kokushi-progress-fill" style="width:0%;"></div>
+        </div>
+      </div>
+
+      <div class="section-card" style="display:flex; flex-direction:column; gap:9px;">
+        <p class="section-title" style="margin-bottom:2px;">コースを選ぶ</p>
+        <button id="kokushiBtnRand5" class="kokushi-course-btn primary-course" type="button">
+          <div>
+            <span class="kokushi-course-main">🎲 ランダム5問（約3分）</span>
+            <span class="kokushi-course-sub">スキマ時間の国試チェックに最適</span>
+          </div>
+          <span>▶</span>
+        </button>
+
+        <button id="kokushiBtnRand10" class="kokushi-course-btn" type="button">
+          <div>
+            <span class="kokushi-course-main">📝 ランダム10問</span>
+            <span class="kokushi-course-sub">実力をしっかり確認したいときに</span>
+          </div>
+          <span>▶</span>
+        </button>
+
+        <button id="kokushiBtnAll" class="kokushi-course-btn" type="button">
+          <div>
+            <span class="kokushi-course-main">🏆 全30問チャレンジ</span>
+            <span class="kokushi-course-sub">収録しているホルモンの過去問を完全制覇</span>
+          </div>
+          <span>▶</span>
+        </button>
+
+        <button id="kokushiBtnWeak" class="kokushi-course-btn weak-course" type="button" style="display:none;">
+          <div>
+            <span class="kokushi-course-main">🔥 間違えた問題だけ復習（<span id="kokushiWeakCount">0</span>問）</span>
+            <span class="kokushi-course-sub">正解すると自動で弱点リストから解除されます</span>
+          </div>
+          <span>▶</span>
+        </button>
+      </div>
+
+      <button id="kokushiBackToBaseBtn" class="secondary-btn" type="button">← 基礎学習に戻る</button>
+    </section>
+
+    <!-- 5-2. 過去問出題画面 -->
+    <section id="kokushiPlayScreen" class="screen">
+      <div class="kokushi-play-header">
+        <div class="kokushi-meta-group">
+          <span id="kokushiMetaBadge" class="kokushi-meta-badge">第60回 午前 問56</span>
+          <span id="kokushiTypeBadge" class="kokushi-type-badge single">【1つ選べ】</span>
+        </div>
+        <span id="kokushiPlayProgress" style="color:var(--muted); font-variant-numeric:tabular-nums;">1 / 5</span>
+      </div>
+
+      <div class="kokushi-question-card">
+        <p id="kokushiQuestionText" class="kokushi-question-text"></p>
+      </div>
+
+      <div id="kokushiChoicesList" class="kokushi-choices-list"></div>
+
+      <div id="kokushiExplainCard" class="kokushi-explain-card">
+        <div id="kokushiJudgeTitle" class="kokushi-judge-title"></div>
+        <div id="kokushiPointBox" class="kokushi-point-box"></div>
+        <div id="kokushiNotesList" class="kokushi-notes-list"></div>
+        <button id="kokushiNextBtn" class="kokushi-next-btn" type="button">次の問題へ ▶</button>
+      </div>
+
+      <button id="kokushiQuitBtn" class="secondary-btn" type="button">過去問メニューに戻る</button>
+    </section>
+
+    <!-- 5-3. 過去問リザルト画面 -->
+    <section id="kokushiResultScreen" class="screen">
+      <div class="result-hero">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--muted);">国試過去問 チャレンジ結果</div>
+        <div id="kokushiRankBadge" class="rank-badge S">S</div>
+        <div id="kokushiResultSub" style="font-size:0.84rem; font-weight:800;"></div>
+        <div class="stats-row">
+          <div>正答数<strong id="kokushiFinalScore">0 / 5問</strong></div>
+          <div>正答率<strong id="kokushiFinalRate">0%</strong></div>
+          <div>累計クリア<strong id="kokushiFinalCleared">0 / 30問</strong></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <p id="kokushiMissTitle" class="section-title">今回間違えた問題</p>
+        <div id="kokushiMissList"></div>
+      </div>
+
+      <button id="kokushiResultWeakBtn" class="weak-btn" type="button" style="display:none;">
+        🔥 間違えた問題をすぐ復習（<span id="kokushiResultWeakCount">0</span>問）
+      </button>
+      <button id="kokushiToTopBtn" class="kokushi-next-btn" type="button">過去問メニューへ</button>
+      <button id="kokushiResultBackBtn" class="secondary-btn" type="button">← 基礎学習に戻る</button>
+    </section>
+
+    <!-- フッター -->
+    <footer style="text-align: center; padding: 24px 16px 32px; color: #64748b; font-size: 12px; letter-spacing: 0.03em;">&copy;Created by Shunsuke Usui</footer>
   </div>
 
   <script>
     /**
      * =========================================================================
-     * 1. 全27種ホルモン マスターデータ
+     * 1. 主要22ホルモン マスターデータ
      * =========================================================================
      */
     const HORMONES = [
-      // 1. 下垂体（8種）
-      {
-        id: "h01", unit: "下垂体", name: "成長ホルモン（GH）", organ: "下垂体前葉",
-        action: "骨・軟部組織の成長促進、血糖値上昇",
-        clinical: "過剰で先端巨大症・巨人症、欠乏で下垂体性低身長症",
-        hint: "下垂体前葉から分泌。過剰で先端巨大症・巨人症、欠乏で下垂体性低身長症。"
-      },
-      {
-        id: "h02", unit: "下垂体", name: "プロラクチン（PRL）", organ: "下垂体前葉",
-        action: "乳腺の発達、乳汁産生促進",
-        clinical: "産後に分泌増加。過剰だと無月経・乳汁漏出の原因",
-        hint: "下垂体前葉から分泌。産後に分泌増加し、乳汁の「産生」を担う。"
-      },
-      {
-        id: "h03", unit: "下垂体", name: "副腎皮質刺激ホルモン（ACTH）", organ: "下垂体前葉",
-        action: "副腎皮質からの糖質コルチコイド分泌促進",
-        clinical: "ストレスで分泌増加。過剰でクッシング病",
-        hint: "下垂体前葉から分泌。ストレスで増加し、過剰でクッシング病。"
-      },
-      {
-        id: "h04", unit: "下垂体", name: "甲状腺刺激ホルモン（TSH）", organ: "下垂体前葉",
-        action: "甲状腺ホルモンの合成・分泌促進",
-        clinical: "甲状腺機能低下症ではフィードバックによりTSHが上昇",
-        hint: "下垂体前葉から分泌。甲状腺機能低下症ではフィードバックで上昇。"
-      },
-      {
-        id: "h05", unit: "下垂体", name: "卵胞刺激ホルモン（FSH）", organ: "下垂体前葉",
-        action: "卵胞の発育促進、精子の形成促進",
-        clinical: "性腺刺激ホルモン（ゴナドトロピン）の1つ",
-        hint: "下垂体前葉から分泌。卵胞の発育・精子形成を促す性腺刺激ホルモン。"
-      },
-      {
-        id: "h06", unit: "下垂体", name: "黄体形成ホルモン（LH）", organ: "下垂体前葉",
-        action: "排卵誘発、黄体形成、テストステロン分泌促進",
-        clinical: "排卵直前に急上昇する（LHサージ）",
-        hint: "下垂体前葉から分泌。排卵直前に急上昇（LHサージ）して排卵を促す。"
-      },
-      {
-        id: "h07", unit: "下垂体", name: "バソプレシン（ADH）", organ: "下垂体後葉",
-        action: "腎集合管での水の再吸収促進（抗利尿）、血管収縮",
-        clinical: "視床下部で産生され後葉から分泌。欠乏で尿崩症（多尿）",
-        hint: "下垂体後葉から分泌（産生は視床下部）。欠乏すると尿崩症（多尿）。"
-      },
-      {
-        id: "h08", unit: "下垂体", name: "オキシトシン", organ: "下垂体後葉",
-        action: "子宮平滑筋の収縮（分娩）、射乳（乳汁排出）",
-        clinical: "プロラクチンは『産生』、オキシトシンは『排出（射乳）』と区別",
-        hint: "下垂体後葉から分泌。プロラクチン（産生）と区別して『排出（射乳）』と覚える。"
-      },
+      // --- 初級10種（下垂体・甲状腺・副甲状腺） ---
+      { id: "GH",   tier: "basic", name: "成長ホルモン", organ: "下垂体前葉", group: "下垂体・松果体", action: "骨・軟骨の成長促進、血糖上昇", hint: "前葉から出て生涯分泌。小児欠乏で低身長、成人過剰で先端巨大症", solubility: "水溶性" },
+      { id: "PRL",  tier: "basic", name: "プロラクチン", organ: "下垂体前葉", group: "下垂体・松果体", action: "乳汁の産生・分泌促進", hint: "産生は前葉プロラクチン、射乳（排泄）は後葉オキシトシン！", solubility: "水溶性" },
+      { id: "TSH",  tier: "basic", name: "甲状腺刺激ホルモン", organ: "下垂体前葉", group: "下垂体・松果体", action: "甲状腺ホルモンの分泌促進", hint: "前葉の刺激ホルモン3兄弟（TSH・ACTH・FSH/LH）の1つ", solubility: "水溶性" },
+      { id: "ACTH", tier: "basic", name: "副腎皮質刺激ホルモン", organ: "下垂体前葉", group: "下垂体・松果体", action: "副腎皮質（コルチゾール等）の分泌促進", hint: "皮質を刺激する。髄質は交感神経の直接支配！", solubility: "水溶性" },
+      { id: "LH",   tier: "basic", name: "黄体形成ホルモン", organ: "下垂体前葉", group: "下垂体・松果体", action: "排卵誘発（LHサージ）、プロゲステロン分泌促進", hint: "LHサージで排卵！黄体を作ってプロゲステロンを出す", solubility: "水溶性" },
+      { id: "FSH",  tier: "basic", name: "卵胞刺激ホルモン", organ: "下垂体前葉", group: "下垂体・松果体", action: "卵胞の発育・精子形成の促進", hint: "FSH＝卵胞を育てる、LH＝排卵させる", solubility: "水溶性" },
+      { id: "OT",   tier: "basic", name: "オキシトシン", organ: "下垂体後葉", group: "下垂体・松果体", action: "子宮平滑筋の収縮、射乳反射（乳汁排泄）", hint: "視床下部で産生→後葉から分泌。後葉は『オキ・バソ』の2つだけ！", solubility: "水溶性" },
+      { id: "ADH",  tier: "basic", name: "バソプレシン（抗利尿ホルモン）", organ: "下垂体後葉", group: "下垂体・松果体", action: "集合管での水再吸収促進（尿量減少）", hint: "視床下部で産生→後葉から分泌。欠乏すると尿崩症（多尿）", solubility: "水溶性" },
+      { id: "T4",   tier: "basic", name: "甲状腺ホルモン（T3・T4）", organ: "甲状腺", group: "甲状腺・副甲状腺", action: "基礎代謝亢進、体温上昇、骨成長促進", hint: "ヨウ素を含む脂溶性ホルモン。亢進でバセドウ病", solubility: "脂溶性" },
+      { id: "CT",   tier: "basic", name: "カルシトニン", organ: "甲状腺（傍濾胞細胞）", group: "甲状腺・副甲状腺", action: "骨吸収抑制により血中Ca濃度を低下", hint: "カルシトニン＝カルシウムを骨に『ト』どめて血中Ca↓", solubility: "水溶性" },
 
-      // 2. 甲状腺・副腎（8種）
-      {
-        id: "h09", unit: "甲状腺・副腎", name: "T3：トリヨードサイロニン", organ: "甲状腺",
-        action: "基礎代謝の亢進、熱産生、発育促進（活性が強い）",
-        clinical: "ヨウ素3つ（トリ）。過剰でバセドウ病、欠乏で橋本病・クレチン症",
-        hint: "甲状腺から分泌。ヨウ素3つ（トリ）で活性が強い。過剰でバセドウ病。"
-      },
-      {
-        id: "h10", unit: "甲状腺・副腎", name: "T4：サイロキシン", organ: "甲状腺",
-        action: "基礎代謝の亢進、熱産生、発育促進（血中量が多い）",
-        clinical: "ヨウ素4つ（テトラ）。末梢組織で活性の強いT3に変換される",
-        hint: "甲状腺から分泌。ヨウ素4つ（テトラ）。末梢組織でT3に変換されて働く。"
-      },
-      {
-        id: "h11", unit: "甲状腺・副腎", name: "カルシトニン", organ: "甲状腺",
-        action: "血中Ca2+濃度の低下、骨吸収抑制",
-        clinical: "甲状腺の傍濾胞細胞から分泌。パラトルモンと拮抗する",
-        hint: "甲状腺（傍濾胞細胞）から分泌。血中Ca2+を下げ、パラトルモンと拮抗。"
-      },
-      {
-        id: "h12", unit: "甲状腺・副腎", name: "パラトルモン（PTH）", organ: "上皮小体（副甲状腺）",
-        action: "血中Ca2+濃度の上昇、骨吸収促進",
-        clinical: "過剰だと骨がもろくなり、尿路結石や病的骨折を起こしやすい",
-        hint: "上皮小体（副甲状腺）から分泌。血中Ca2+を上げ、過剰で尿路結石・病的骨折。"
-      },
-      {
-        id: "h13", unit: "甲状腺・副腎", name: "アルドステロン", organ: "副腎皮質",
-        action: "腎臓でのNa+再吸収・K+排泄促進、血圧上昇",
-        clinical: "球状層から分泌。過剰で原発性アルドステロン症（高血圧・低K血症）",
-        hint: "副腎皮質（球状層）から分泌。過剰で高血圧・低K血症を起こす。"
-      },
-      {
-        id: "h14", unit: "甲状腺・副腎", name: "コルチゾール", organ: "副腎皮質",
-        action: "血糖値上昇、抗炎症作用、抗ストレス作用",
-        clinical: "束状層から分泌。過剰でクッシング症候群（満月様顔貌・中心性肥満）",
-        hint: "副腎皮質（束状層）から分泌。過剰でクッシング症候群（満月様顔貌）。"
-      },
-      {
-        id: "h15", unit: "甲状腺・副腎", name: "副腎アンドロゲン", organ: "副腎皮質",
-        action: "蛋白同化作用、第二次性徴（体毛の発育など）",
-        clinical: "網状層から分泌。男女ともに副腎皮質から分泌される男性ホルモン",
-        hint: "副腎皮質（網状層）から男女ともに分泌される男性ホルモン。"
-      },
-      {
-        id: "h16", unit: "甲状腺・副腎", name: "アドレナリン・ノルアドレナリン", organ: "副腎髄質",
-        action: "心拍数・血圧上昇、血糖値上昇、気管支拡張",
-        clinical: "交感神経の興奮で分泌。過剰産生する腫瘍が褐色細胞腫",
-        hint: "副腎髄質から交感神経興奮で分泌。過剰産生する腫瘍は褐色細胞腫。"
-      },
-
-      // 3. 膵臓・性腺・その他（11種）
-      {
-        id: "h17", unit: "膵臓・性腺・その他", name: "インスリン", organ: "膵臓",
-        action: "血糖値の低下（唯一の血糖降下ホルモン）",
-        clinical: "膵島B細胞から分泌。欠乏・作用不足で糖尿病",
-        hint: "膵臓（膵島B細胞）から分泌される唯一の血糖降下ホルモン。欠乏で糖尿病。"
-      },
-      {
-        id: "h18", unit: "膵臓・性腺・その他", name: "グルカゴン", organ: "膵臓",
-        action: "血糖値の上昇（肝グリコーゲンの分解促進）",
-        clinical: "膵島A細胞から分泌。インスリンと拮抗して低血糖を防ぐ",
-        hint: "膵臓（膵島A細胞）から分泌。肝グリコーゲン分解で血糖値を上げる。"
-      },
-      {
-        id: "h19", unit: "膵臓・性腺・その他", name: "ソマトスタチン", organ: "膵臓",
-        action: "インスリン・グルカゴン・成長ホルモンの分泌抑制",
-        clinical: "膵島D細胞や視床下部から分泌される『ブレーキ役』のホルモン",
-        hint: "膵臓（膵島D細胞）や視床下部から分泌される『ブレーキ役』ホルモン。"
-      },
-      {
-        id: "h20", unit: "膵臓・性腺・その他", name: "エストロゲン（卵胞ホルモン）", organ: "卵巣",
-        action: "子宮内膜の増殖、女性的二次性徴、骨量維持",
-        clinical: "閉経後に減少すると骨粗鬆症のリスクが急増する",
-        hint: "卵巣から分泌。骨量維持に重要で、閉経後に減少すると骨粗鬆症リスク増。"
-      },
-      {
-        id: "h21", unit: "膵臓・性腺・その他", name: "プロゲステロン（黄体ホルモン）", organ: "卵巣",
-        action: "妊娠の維持、基礎体温の上昇",
-        clinical: "排卵後の黄体から分泌され、着床しやすい環境を作る",
-        hint: "卵巣（排卵後の黄体）から分泌。妊娠維持と基礎体温上昇に働く。"
-      },
-      {
-        id: "h22", unit: "膵臓・性腺・その他", name: "テストステロン", organ: "精巣",
-        action: "男性的二次性徴、筋・骨格の発達、精子形成",
-        clinical: "精巣のライディッヒ細胞から分泌される代表的な男性ホルモン",
-        hint: "精巣（ライディッヒ細胞）から分泌される代表的な男性ホルモン。"
-      },
-      {
-        id: "h23", unit: "膵臓・性腺・その他", name: "メラトニン", organ: "松果体",
-        action: "概日リズム（サーカディアンリズム）の調節、睡眠誘導",
-        clinical: "夜間（暗所）に分泌が増え、強い光を浴びると抑制される",
-        hint: "松果体から夜間に分泌が増加し、概日リズム調節・睡眠誘導に働く。"
-      },
-      {
-        id: "h24", unit: "膵臓・性腺・その他", name: "エリスロポエチン", organ: "腎臓",
-        action: "骨髄での赤血球産生促進",
-        clinical: "慢性腎不全で分泌が低下すると腎性貧血になる",
-        hint: "腎臓から分泌。骨髄での赤血球産生を促し、低下すると腎性貧血。"
-      },
-      {
-        id: "h25", unit: "膵臓・性腺・その他", name: "レニン", organ: "腎臓",
-        action: "血圧上昇（レニン・アンジオテンシン・アルドステロン系）",
-        clinical: "腎血流が低下すると分泌され、血圧を上げるスイッチになる",
-        hint: "腎臓から腎血流低下時に分泌され、血圧を上げるRAA系のスイッチになる。"
-      },
-      {
-        id: "h26", unit: "膵臓・性腺・その他", name: "活性型ビタミンD（カルシトリオール）", organ: "腎臓",
-        action: "腸管からのCa2+吸収促進、骨形成の補助",
-        clinical: "腎臓で最終活性化される。腎不全で不足すると骨軟化症・低Ca血症",
-        hint: "腎臓で最終活性化。腸管からのCa2+吸収を促し、不足で骨軟化症。"
-      },
-      {
-        id: "h27", unit: "膵臓・性腺・その他", name: "心房性ナトリウム利尿ペプチド（ANP）", organ: "心臓（心房）",
-        action: "利尿作用（Na+と水の排泄）、血圧低下",
-        clinical: "心房が血液で引き伸ばされると分泌され、心臓の負担を減らす",
-        hint: "心臓（心房）から分泌。Na+と水の排泄を促して血圧を下げ心臓負担を軽減。"
-      }
-    ];
-
-    // モード2「分泌器官 3つ集めチャレンジ」の対象5器官
-    const COLLECT_TARGET_ORGANS = [
-      "下垂体前葉",
-      "甲状腺",
-      "副腎皮質",
-      "膵臓",
-      "腎臓"
+      // --- 上級12種（副腎・膵臓・腎臓・性腺など） ---
+      { id: "PTH",  tier: "adv", name: "パラトルモン（副甲状腺ホルモン）", organ: "副甲状腺（上皮小体）", group: "甲状腺・副甲状腺", action: "骨吸収促進により血中Ca濃度を上昇", hint: "パラトルモンは破骨細胞を活性化して血中Ca↑、リン再吸収↓", solubility: "水溶性" },
+      { id: "MEL",  tier: "adv", name: "メラトニン", organ: "松果体", group: "下垂体・松果体", action: "概日リズム（睡眠・覚醒）の調節", hint: "夜に松果体から分泌される睡眠ホルモン", solubility: "脂溶性（インドールアミン）" },
+      { id: "ALD",  tier: "adv", name: "アルドステロン", organ: "副腎皮質（球状層）", group: "副腎", action: "集合管でのNa+・水再吸収促進、K+排泄", hint: "電解質コルチコイド。血圧を上げるステロイドホルモン", solubility: "脂溶性" },
+      { id: "COR",  tier: "adv", name: "コルチゾール", organ: "副腎皮質（束状層）", group: "副腎", action: "糖新生促進（血糖上昇）、抗炎症・ストレス応答", hint: "糖質コルチコイド。早朝に分泌最大！過剰でクッシング症候群", solubility: "脂溶性" },
+      { id: "AND",  tier: "adv", name: "アンドロゲン（副腎性）", organ: "副腎皮質（網状層）", group: "副腎", action: "蛋白同化作用・二次性徴に関与", hint: "副腎皮質の3層：外から球(アルド)・束(コルチ)・網(アンドロ)", solubility: "脂溶性" },
+      { id: "ADR",  tier: "adv", name: "アドレナリン・ノルアドレナリン", organ: "副腎髄質", group: "副腎", action: "血糖上昇（グリコーゲン分解）、心拍・血圧上昇", hint: "髄質は交感神経の節前線維が直接支配するカテコールアミン", solubility: "水溶性" },
+      { id: "INS",  tier: "adv", name: "インスリン", organ: "膵臓（ランゲルハンス島B細胞）", group: "膵臓・消化管", action: "唯一の血糖値低下ホルモン（細胞への糖取込促進）", hint: "B細胞から分泌。血糖値を下げるのはインスリンだけ！", solubility: "水溶性" },
+      { id: "GLU",  tier: "adv", name: "グルカゴン", organ: "膵臓（ランゲルハンス島A細胞）", group: "膵臓・消化管", action: "グリコーゲン分解・糖新生による血糖上昇", hint: "A（α）細胞から分泌。インスリンの逆で血糖値↑", solubility: "水溶性" },
+      { id: "REN",  tier: "adv", name: "レニン", organ: "腎臓（傍糸球体装置）", group: "腎臓・性腺", action: "アンジオテンシノーゲン活性化による血圧上昇", hint: "腎臓の2大ホルモンはレニン（血圧）とエリスロポエチン（造血）", solubility: "水溶性" },
+      { id: "EPO",  tier: "adv", name: "エリスロポエチン", organ: "腎臓", group: "腎臓・性腺", action: "骨髄に作用し赤血球の産生（造血）を促進", hint: "腎不全で分泌低下すると腎性貧血になる！", solubility: "水溶性" },
+      { id: "EST",  tier: "adv", name: "エストロゲン", organ: "卵巣（卵胞）", group: "腎臓・性腺", action: "子宮内膜増殖、骨吸収抑制、二次性徴", hint: "閉経後に減少すると骨粗鬆症のリスクが急増するステロイド", solubility: "脂溶性" },
+      { id: "PRO",  tier: "adv", name: "プロゲステロン", organ: "卵巣（黄体）", group: "腎臓・性腺", action: "妊娠の維持、基礎体温の上昇", hint: "排卵後の黄体から分泌され、基礎体温を高温相に保つ", solubility: "脂溶性" }
     ];
 
     /**
      * =========================================================================
-     * 2. ストレージ・サウンド・ユーティリティ
+     * 2. タブ②「3つ集めチャレンジ」全5問データ
      * =========================================================================
      */
-    const STORAGE_WEAK_KEY = "ot_hormone_weak_ids_v2";
-    const STORAGE_BEST_KEY = "ot_hormone_best_times_v2";
+    const COLLECT_QUESTIONS = [
+      {
+        id: "cq1",
+        title: "下垂体前葉から分泌されるホルモンを3つ選べ",
+        cards: [
+          { key: "c1", label: "成長ホルモン(GH)", isCorrect: true, reason: "下垂体前葉" },
+          { key: "c2", label: "プロラクチン", isCorrect: true, reason: "下垂体前葉" },
+          { key: "c3", label: "甲状腺刺激ホルモン(TSH)", isCorrect: true, reason: "下垂体前葉" },
+          { key: "w1", label: "オキシトシン", isCorrect: false, reason: "下垂体後葉" },
+          { key: "w2", label: "バソプレシン", isCorrect: false, reason: "下垂体後葉" },
+          { key: "w3", label: "アルドステロン", isCorrect: false, reason: "副腎皮質" }
+        ],
+        hint: "下垂体後葉は「オキシトシン・バソプレシン」の2つだけ！"
+      },
+      {
+        id: "cq2",
+        title: "血糖値を上昇させるホルモンを3つ選べ",
+        cards: [
+          { key: "c1", label: "グルカゴン", isCorrect: true, reason: "血糖上昇" },
+          { key: "c2", label: "アドレナリン", isCorrect: true, reason: "血糖上昇" },
+          { key: "c3", label: "コルチゾール", isCorrect: true, reason: "血糖上昇" },
+          { key: "w1", label: "インスリン", isCorrect: false, reason: "血糖低下" },
+          { key: "w2", label: "カルシトニン", isCorrect: false, reason: "血中Ca低下" },
+          { key: "w3", label: "メラトニン", isCorrect: false, reason: "睡眠調節" }
+        ],
+        hint: "血糖値を下げるのはインスリンだけ。上げるホルモンは複数あります！"
+      },
+      {
+        id: "cq3",
+        title: "副腎皮質から分泌されるステロイドホルモンを3つ選べ",
+        cards: [
+          { key: "c1", label: "アルドステロン", isCorrect: true, reason: "副腎皮質・球状層" },
+          { key: "c2", label: "コルチゾール", isCorrect: true, reason: "副腎皮質・束状層" },
+          { key: "c3", label: "副腎アンドロゲン", isCorrect: true, reason: "副腎皮質・網状層" },
+          { key: "w1", label: "アドレナリン", isCorrect: false, reason: "副腎髄質" },
+          { key: "w2", label: "ノルアドレナリン", isCorrect: false, reason: "副腎髄質" },
+          { key: "w3", label: "レニン", isCorrect: false, reason: "腎臓" }
+        ],
+        hint: "副腎皮質＝ステロイド3種（電解質・糖質・性）、副腎髄質＝カテコールアミン！"
+      },
+      {
+        id: "cq4",
+        title: "脂溶性ホルモン（ステロイド・甲状腺）を3つ選べ",
+        cards: [
+          { key: "c1", label: "コルチゾール", isCorrect: true, reason: "ステロイド（脂溶性）" },
+          { key: "c2", label: "エストロゲン", isCorrect: true, reason: "ステロイド（脂溶性）" },
+          { key: "c3", label: "サイロキシン(T4)", isCorrect: true, reason: "甲状腺ホルモン（脂溶性）" },
+          { key: "w1", label: "インスリン", isCorrect: false, reason: "ペプチド／水溶性" },
+          { key: "w2", label: "グルカゴン", isCorrect: false, reason: "ペプチド／水溶性" },
+          { key: "w3", label: "バソプレシン", isCorrect: false, reason: "ペプチド／水溶性" }
+        ],
+        hint: "ステロイドホルモン（副腎皮質・性腺）と甲状腺ホルモンが脂溶性！ペプチド系は水溶性。"
+      },
+      {
+        id: "cq5",
+        title: "腎臓または下垂体後葉から分泌されるホルモンを3つ選べ",
+        cards: [
+          { key: "c1", label: "レニン", isCorrect: true, reason: "腎臓" },
+          { key: "c2", label: "エリスロポエチン", isCorrect: true, reason: "腎臓" },
+          { key: "c3", label: "バソプレシン", isCorrect: true, reason: "下垂体後葉" },
+          { key: "w1", label: "パラトルモン", isCorrect: false, reason: "副甲状腺" },
+          { key: "w2", label: "カルシトニン", isCorrect: false, reason: "甲状腺" },
+          { key: "w3", label: "プロラクチン", isCorrect: false, reason: "下垂体前葉" }
+        ],
+        hint: "腎臓は「レニン・エリスロポエチン」、下垂体後葉は「オキシトシン・バソプレシン」！"
+      }
+    ];
+
+    /**
+     * =========================================================================
+     * 3. グループ学習「ひとこと解説お題」
+     * =========================================================================
+     */
+    const GROUP_TOPICS = [
+      {
+        title: "下垂体前葉と後葉のホルモンの違い（特に産生場所の違い）を1分で説明しよう！",
+        answer: "<strong>下垂体前葉</strong>は自らホルモン（GH・PRL・TSH・ACTH・LH・FSH）を<strong>合成・分泌</strong>します。一方、<strong>下垂体後葉</strong>から出る2つ（<strong>オキシトシン・バソプレシン</strong>）は、<strong>視床下部で産生</strong>され、軸索輸送で後葉へ運ばれて分泌されます。"
+      },
+      {
+        title: "血糖値を下げるホルモンと上げるホルモンを全部挙げて、それぞれの分泌器官を説明しよう！",
+        answer: "血糖値を<strong>下げる</strong>のは<strong>インスリン（膵臓B細胞）のみ</strong>です。一方、<strong>上げる</strong>ホルモンは<strong>グルカゴン（膵臓A細胞）、アドレナリン（副腎髄質）、コルチゾール（副腎皮質）、成長ホルモン（下垂体前葉）</strong>など複数あります。"
+      },
+      {
+        title: "血中カルシウム濃度を調節する2つのホルモン（パラトルモンとカルシトニン）の対比を説明しよう！",
+        answer: "<strong>パラトルモン</strong>は<strong>副甲状腺（上皮小体）</strong>から分泌され、破骨細胞を活性化（骨吸収促進）して<strong>血中Ca↑</strong>にします。<strong>カルシトニン</strong>は<strong>甲状腺（傍濾胞細胞）</strong>から分泌され、骨吸収を抑制して<strong>血中Ca↓</strong>にします。"
+      },
+      {
+        title: "副腎皮質と副腎髄質から出るホルモンの違いと、ストレス時の反応を説明しよう！",
+        answer: "<strong>副腎皮質</strong>はACTHの刺激で<strong>ステロイドホルモン</strong>（アルドステロン・コルチゾール・アンドロゲン）を分泌し、ストレス時はコルチゾールが糖新生や抗炎症に働きます。<strong>副腎髄質</strong>は<strong>交感神経の節前線維が直接支配</strong>し、アドレナリン・ノルアドレナリンを放出して心拍・血圧・血糖を上げます。"
+      },
+      {
+        title: "腎臓から分泌される2つのホルモン（レニン・エリスロポエチン）の役割を説明しよう！",
+        answer: "<strong>レニン</strong>は傍糸球体装置から分泌され、レニン-アンジオテンシン-アルドステロン系を活性化して<strong>血圧を上昇</strong>させます。<strong>エリスロポエチン</strong>は骨髄に作用して<strong>赤血球の産生（造血）を促進</strong>し、腎不全で不足すると腎性貧血を起こします。"
+      }
+    ];
+
+    /**
+     * =========================================================================
+     * 4. ユーティリティ・Web Audio API・ストレージ管理
+     * =========================================================================
+     */
+    const STORAGE_MAIN_KEY = "ot_hormone_master_v1";
+    const RANK_WEIGHT = { S: 3, A: 2, B: 1 };
 
     let soundOn = true;
     let audioCtx = null;
+
+    /** HTML特殊文字を安全にエスケープ（<ランゲルハンス>等のタグ誤解釈を防止） */
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
 
     function playSound(type) {
       if (!soundOn) return;
@@ -1049,11 +1810,11 @@
         if (type === "tap") {
           tone(540, 0.05, "sine", 0.06);
         } else if (type === "ok") {
-          tone(659.25, 0.1, "sine", 0.12, 0);
-          tone(880.0, 0.18, "sine", 0.13, 0.07);
+          tone(660, 0.09, "sine", 0.12, 0);
+          tone(990, 0.14, "sine", 0.12, 0.06);
         } else if (type === "ng") {
-          tone(210, 0.16, "sawtooth", 0.1, 0);
-          tone(165, 0.2, "sawtooth", 0.1, 0.09);
+          tone(210, 0.15, "sawtooth", 0.1, 0);
+          tone(160, 0.2, "sawtooth", 0.1, 0.09);
         } else if (type === "clear") {
           tone(523.25, 0.11, "sine", 0.12, 0);
           tone(659.25, 0.11, "sine", 0.12, 0.09);
@@ -1063,52 +1824,64 @@
       } catch (e) {}
     }
 
-    function getWeakIds() {
+    function loadMainStorage() {
       try {
-        const parsed = JSON.parse(localStorage.getItem(STORAGE_WEAK_KEY) || "[]");
-        return Array.isArray(parsed) ? parsed : [];
+        const raw = JSON.parse(localStorage.getItem(STORAGE_MAIN_KEY) || "{}");
+        return {
+          records: (raw.records && typeof raw.records === "object") ? raw.records : {},
+          weakIds: Array.isArray(raw.weakIds) ? raw.weakIds : []
+        };
       } catch (e) {
-        return [];
+        return { records: {}, weakIds: [] };
       }
     }
 
-    function saveWeakIds(ids) {
+    function saveMainStorage(data) {
       try {
-        localStorage.setItem(STORAGE_WEAK_KEY, JSON.stringify([...new Set(ids)]));
+        localStorage.setItem(STORAGE_MAIN_KEY, JSON.stringify({
+          records: data.records,
+          weakIds: [...new Set(data.weakIds)]
+        }));
       } catch (e) {}
     }
 
+    function saveCourseRecord(key, sec, rank) {
+      const st = loadMainStorage();
+      const prev = st.records[key];
+      let isNewBest = false;
+      if (!prev) {
+        st.records[key] = { bestTime: sec, bestRank: rank };
+        isNewBest = true;
+      } else {
+        if (sec < prev.bestTime) {
+          prev.bestTime = sec;
+          isNewBest = true;
+        }
+        if ((RANK_WEIGHT[rank] || 0) > (RANK_WEIGHT[prev.bestRank] || 0)) {
+          prev.bestRank = rank;
+        }
+      }
+      saveMainStorage(st);
+      return isNewBest;
+    }
+
+    function getWeakIds() {
+      const valid = new Set(HORMONES.map(h => h.id));
+      return loadMainStorage().weakIds.filter(id => valid.has(id));
+    }
+
     function addWeakId(id) {
-      const list = getWeakIds();
-      if (!list.includes(id)) {
-        list.push(id);
-        saveWeakIds(list);
+      const st = loadMainStorage();
+      if (!st.weakIds.includes(id)) {
+        st.weakIds.push(id);
+        saveMainStorage(st);
       }
     }
 
     function removeWeakId(id) {
-      saveWeakIds(getWeakIds().filter(x => x !== id));
-    }
-
-    function getBestTimes() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_BEST_KEY) || "{}");
-      } catch (e) {
-        return {};
-      }
-    }
-
-    function updateBestTime(key, sec) {
-      const data = getBestTimes();
-      const prev = data[key];
-      if (typeof prev !== "number" || sec < prev) {
-        data[key] = sec;
-        try {
-          localStorage.setItem(STORAGE_BEST_KEY, JSON.stringify(data));
-        } catch (e) {}
-        return true;
-      }
-      return false;
+      const st = loadMainStorage();
+      st.weakIds = st.weakIds.filter(x => x !== id);
+      saveMainStorage(st);
     }
 
     function shuffle(arr) {
@@ -1120,30 +1893,45 @@
       return a;
     }
 
+    function calcRank(misses) {
+      if (misses === 0) return "S";
+      if (misses <= 2) return "A";
+      return "B";
+    }
+
     /**
      * =========================================================================
-     * 3. 画面状態管理
+     * 5. 画面・状態管理
      * =========================================================================
      */
-    let activeGameTab = "match"; // "match" | "collect"
-    let selectedUnit = "下垂体";
-    let selectedMode = "organ";  // "organ" | "action" | "clinical"
-    let lastPlayedType = "match"; // "match" | "weak" | "collect"
+    const MATCH_COURSES = [
+      { id: "basic",  label: "初級：下垂体・甲状腺・副甲状腺（10種）", sub: "GH・PRL・TSH・ACTH・LH・FSH・OT・ADH・T3/T4・CT" },
+      { id: "adv",    label: "上級：副腎・膵臓・腎臓・性腺など（12種）", sub: "PTH・メラトニン・副腎皮質/髄質・膵島・腎臓・卵巣" },
+      { id: "random", label: "全範囲ランダム（10問）", sub: "主要22ホルモンから毎回ランダム出題" }
+    ];
 
-    // 共通タイマー
+    let activeTab = "match";       // "match" | "collect" | "summary"
+    let selectedMatchMode = "organ"; // "organ" | "action"
+    let selectedMatchCourse = "basic";
+    let summaryFilter = "すべて";
+    let lastSession = null;
+
     let timerInterval = null;
     let startTime = 0;
     let elapsedSec = 0;
 
-    // モード1（マッチング）状態
     let matchState = {
+      mode: "organ",
+      courseId: "basic",
       isWeakMode: false,
       playedList: [],
-      queue: [],
+      batches: [],
+      batchIndex: 0,
       currentBatch: [],
       selectedLeft: null,
       selectedRight: null,
       matchedInBatch: 0,
+      clearedTotal: 0,
       missCount: 0,
       combo: 0,
       maxCombo: 0,
@@ -1151,14 +1939,11 @@
       hintTimer: null
     };
 
-    // モード2（3つ集め）状態
     let collectState = {
-      organOrder: [],
-      currentIdx: 0,
+      qIndex: 0,
       cards: [],
-      selectedIds: new Set(),
+      selectedKeys: new Set(),
       missCount: 0,
-      missedSet: new Set(),
       isLocked: false
     };
 
@@ -1175,104 +1960,229 @@
       }
     }
 
+    function startTimer(displayId) {
+      stopTimer();
+      startTime = performance.now();
+      elapsedSec = 0;
+      document.getElementById(displayId).textContent = "0.0";
+      timerInterval = setInterval(() => {
+        elapsedSec = (performance.now() - startTime) / 1000;
+        document.getElementById(displayId).textContent = elapsedSec.toFixed(1);
+      }, 100);
+    }
+
     /**
      * =========================================================================
-     * 4. スタート画面描画
+     * 6. トップ画面 & まとめ表描画
      * =========================================================================
      */
     function renderStartScreen() {
-      // タブ表示切り替え
-      document.getElementById("tabMatchBtn").classList.toggle("active", activeGameTab === "match");
-      document.getElementById("tabCollectBtn").classList.toggle("active", activeGameTab === "collect");
-      document.getElementById("panelMatch").classList.toggle("active", activeGameTab === "match");
-      document.getElementById("panelCollect").classList.toggle("active", activeGameTab === "collect");
+      if (typeof KokushiModule !== "undefined") {
+        KokushiModule.updateEntryBadge();
+      }
 
-      // 単元ボタン生成
-      const unitOptions = [
-        { id: "下垂体", label: "下垂体", sub: "8種" },
-        { id: "甲状腺・副腎", label: "甲状腺・副腎", sub: "8種" },
-        { id: "膵臓・性腺・その他", label: "膵臓・性腺・その他", sub: "11種" },
-        { id: "ALL", label: "全単元ランダム", sub: "10種出題" }
-      ];
+      document.getElementById("tabMatchBtn").classList.toggle("active", activeTab === "match");
+      document.getElementById("tabCollectBtn").classList.toggle("active", activeTab === "collect");
+      document.getElementById("tabSummaryBtn").classList.toggle("active", activeTab === "summary");
 
-      const unitGrid = document.getElementById("unitGrid");
-      unitGrid.innerHTML = "";
-      unitOptions.forEach(u => {
+      document.getElementById("panelMatch").classList.toggle("active", activeTab === "match");
+      document.getElementById("panelCollect").classList.toggle("active", activeTab === "collect");
+      document.getElementById("panelSummary").classList.toggle("active", activeTab === "summary");
+
+      // モードトグル反映
+      document.getElementById("modeOrganBtn").classList.toggle("selected", selectedMatchMode === "organ");
+      document.getElementById("modeActionBtn").classList.toggle("selected", selectedMatchMode === "action");
+
+      const st = loadMainStorage();
+
+      // コース選択ボタン描画（選択中モードの記録を表示）
+      const courseListEl = document.getElementById("matchCourseList");
+      courseListEl.innerHTML = "";
+      MATCH_COURSES.forEach(c => {
+        const recKey = `match_${selectedMatchMode}_${c.id}`;
+        const rec = st.records[recKey];
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "select-btn" + (selectedUnit === u.id ? " selected" : "");
-        btn.innerHTML = `${u.label}<span class="sub">${u.sub}</span>`;
+        btn.className = "select-btn" + (selectedMatchCourse === c.id ? " selected" : "");
+        btn.innerHTML = `
+          <div class="select-btn-left">
+            <span>${escapeHtml(c.label)}</span>
+            <span class="sub">${escapeHtml(c.sub)}</span>
+          </div>
+          <span class="record-pill ${rec ? "has-record" : ""}">
+            ${rec ? `<span class="mini-rank rank-${rec.bestRank}">${rec.bestRank}</span><span>${rec.bestTime.toFixed(1)}秒</span>` : "未挑戦"}
+          </span>
+        `;
         btn.onclick = () => {
           playSound("tap");
-          selectedUnit = u.id;
+          selectedMatchCourse = c.id;
           renderStartScreen();
         };
-        unitGrid.appendChild(btn);
+        courseListEl.appendChild(btn);
       });
 
-      // 弱点復習ボタン
-      const weakIds = getWeakIds().filter(id => HORMONES.some(h => h.id === id));
-      const weakBtn = document.getElementById("weakBtn");
+      // 弱点ボタン
+      const weakIds = getWeakIds();
+      const weakBtn = document.getElementById("weakMatchBtn");
       if (weakIds.length > 0) {
         weakBtn.style.display = "block";
-        document.getElementById("weakCount").textContent = String(weakIds.length);
+        document.getElementById("weakMatchCount").textContent = String(weakIds.length);
       } else {
         weakBtn.style.display = "none";
       }
 
-      // ベストタイム表示
-      const bests = getBestTimes();
-      const matchKey = `match_${selectedUnit}_${selectedMode}`;
-      const matchBest = bests[matchKey];
-      document.getElementById("matchBestRecord").textContent =
-        typeof matchBest === "number"
-          ? `この条件のベストタイム：${matchBest.toFixed(1)}秒`
-          : "まだクリア記録がありません";
+      const curRec = st.records[`match_${selectedMatchMode}_${selectedMatchCourse}`];
+      document.getElementById("matchBestText").textContent = curRec
+        ? `選択中条件の最高記録：ランク ${curRec.bestRank} ／ ${curRec.bestTime.toFixed(1)}秒`
+        : "まだクリア記録がありません";
 
-      const collectBest = bests["collect_5organs"];
-      document.getElementById("collectBestRecord").textContent =
-        typeof collectBest === "number"
-          ? `3つ集めチャレンジ ベストタイム：${collectBest.toFixed(1)}秒`
-          : "まだクリア記録がありません";
+      const cRec = st.records["collect_5q"];
+      document.getElementById("collectBestText").textContent = cRec
+        ? `3つ集め最高記録：ランク ${cRec.bestRank} ／ ${cRec.bestTime.toFixed(1)}秒`
+        : "まだクリア記録がありません";
+
+      if (activeTab === "summary") {
+        renderSummaryFilters();
+        renderCheatList();
+      }
+    }
+
+    function renderSummaryFilters() {
+      const cats = ["すべて", "下垂体・松果体", "甲状腺・副甲状腺", "副腎", "膵臓・消化管", "腎臓・性腺"];
+      const container = document.getElementById("summaryFilters");
+      container.innerHTML = "";
+      cats.forEach(cat => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "filter-chip" + (summaryFilter === cat ? " active" : "");
+        btn.textContent = cat;
+        btn.onclick = () => {
+          playSound("tap");
+          summaryFilter = cat;
+          renderSummaryFilters();
+          renderCheatList();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderCheatList() {
+      const kw = (document.getElementById("summarySearch").value || "").trim().toLowerCase();
+      const filtered = HORMONES.filter(h => {
+        if (summaryFilter !== "すべて" && h.group !== summaryFilter) return false;
+        if (!kw) return true;
+        const hay = `${h.id} ${h.name} ${h.organ} ${h.group} ${h.action} ${h.hint} ${h.solubility}`.toLowerCase();
+        return hay.includes(kw);
+      });
+
+      document.getElementById("summaryCountText").textContent = `${filtered.length}項目`;
+      const listEl = document.getElementById("cheatList");
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<div style="text-align:center; padding:18px; color:var(--muted); font-size:0.84rem; font-weight:700;">該当するホルモンがありません</div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(h => {
+        const isLipid = h.solubility.includes("脂溶性");
+        return `
+          <div class="cheat-item">
+            <div class="cheat-head">
+              <span class="cheat-name">${escapeHtml(h.name)}</span>
+              <span class="badge-group">
+                <span class="organ-badge">${escapeHtml(h.organ)}</span>
+                <span class="sol-badge ${isLipid ? "sol-lipid" : "sol-water"}">${escapeHtml(h.solubility)}</span>
+              </span>
+            </div>
+            <div><strong>主な作用：</strong>${escapeHtml(h.action)}</div>
+            <div class="cheat-hint">💡 ${escapeHtml(h.hint)}</div>
+          </div>
+        `;
+      }).join("");
     }
 
     /**
      * =========================================================================
-     * 5. モード1：スピード・マッチング
+     * 7. タブ①：⚡ マッチング（最大5ペア／バッチ）
      * =========================================================================
      */
-    function getMatchAnswerText(h, mode) {
-      if (mode === "organ") return h.organ;
-      if (mode === "action") return h.action;
-      return h.clinical;
+    function getPairText(h, mode) {
+      if (mode === "organ") {
+        return { left: h.organ, right: h.name, matchKey: h.organ };
+      }
+      return { left: h.name, right: h.action, matchKey: h.action };
+    }
+
+    /** 同一バッチ内に同じ分泌器官が極力偏らないようバランス配置する */
+    function buildBalancedBatches(list, mode, batchSize = 5) {
+      const shuffled = shuffle(list);
+      const numBatches = Math.ceil(shuffled.length / batchSize);
+      if (numBatches <= 1) return [shuffled];
+
+      const batches = Array.from({ length: numBatches }, () => []);
+      const groups = new Map();
+
+      for (const item of shuffled) {
+        const key = mode === "organ" ? item.organ : item.action;
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(item);
+      }
+
+      const sortedGroups = Array.from(groups.values()).sort((a, b) => b.length - a.length);
+      for (const group of sortedGroups) {
+        for (const item of group) {
+          const key = mode === "organ" ? item.organ : item.action;
+          const candidates = batches
+            .map((b, idx) => ({
+              idx,
+              len: b.length,
+              sameCount: b.filter(x => (mode === "organ" ? x.organ : x.action) === key).length
+            }))
+            .filter(c => c.len < batchSize)
+            .sort((a, b) => (a.sameCount - b.sameCount) || (a.len - b.len));
+
+          batches[candidates[0].idx].push(item);
+        }
+      }
+
+      return shuffle(batches.filter(b => b.length > 0));
     }
 
     function startMatchGame(isWeakMode = false) {
       playSound("tap");
-      lastPlayedType = isWeakMode ? "weak" : "match";
+      lastSession = { tab: "match", mode: selectedMatchMode, courseId: selectedMatchCourse, isWeakMode };
 
-      let targetList = [];
+      let pool = [];
       if (isWeakMode) {
         const weakIds = getWeakIds();
-        targetList = HORMONES.filter(h => weakIds.includes(h.id));
-        if (targetList.length === 0) {
+        pool = HORMONES.filter(h => weakIds.includes(h.id));
+        if (pool.length === 0) {
           renderStartScreen();
           return;
         }
-      } else if (selectedUnit === "ALL") {
-        targetList = shuffle(HORMONES).slice(0, 10);
+      } else if (selectedMatchCourse === "basic") {
+        pool = HORMONES.filter(h => h.tier === "basic");
+      } else if (selectedMatchCourse === "adv") {
+        pool = HORMONES.filter(h => h.tier === "adv");
       } else {
-        targetList = HORMONES.filter(h => h.unit === selectedUnit);
+        pool = shuffle(HORMONES).slice(0, 10);
       }
 
+      const batches = buildBalancedBatches(pool, selectedMatchMode, 5);
+
+      if (matchState.hintTimer) clearTimeout(matchState.hintTimer);
       matchState = {
+        mode: selectedMatchMode,
+        courseId: selectedMatchCourse,
         isWeakMode,
-        playedList: [...targetList],
-        queue: shuffle(targetList),
+        playedList: pool,
+        batches,
+        batchIndex: 0,
         currentBatch: [],
         selectedLeft: null,
         selectedRight: null,
         matchedInBatch: 0,
+        clearedTotal: 0,
         missCount: 0,
         combo: 0,
         maxCombo: 0,
@@ -1280,107 +2190,74 @@
         hintTimer: null
       };
 
-      const headerMap = {
-        organ: "分泌器官",
-        action: "主な作用",
-        clinical: "国試・臨床ポイント"
-      };
-      document.getElementById("rightColHeader").textContent = headerMap[selectedMode];
+      if (selectedMatchMode === "organ") {
+        document.getElementById("matchLeftHeader").textContent = "分泌器官";
+        document.getElementById("matchRightHeader").textContent = "ホルモン";
+      } else {
+        document.getElementById("matchLeftHeader").textContent = "ホルモン";
+        document.getElementById("matchRightHeader").textContent = "主な作用";
+      }
+
       document.getElementById("matchCombo").textContent = "0";
-      document.getElementById("hintToast").classList.remove("show");
-
+      document.getElementById("matchHintToast").classList.remove("show");
       showScreen("matchPlayScreen");
-
-      stopTimer();
-      startTime = performance.now();
-      elapsedSec = 0;
-      document.getElementById("matchTimer").textContent = "0.0";
-      timerInterval = setInterval(() => {
-        elapsedSec = (performance.now() - startTime) / 1000;
-        document.getElementById("matchTimer").textContent = elapsedSec.toFixed(1);
-      }, 100);
-
-      nextMatchBatch();
+      startTimer("matchTimer");
+      loadMatchBatch(0);
     }
 
-    function nextMatchBatch() {
-      if (matchState.queue.length === 0) {
-        finishMatchGame();
-        return;
-      }
-
-      // 同一解答テキストが1バッチ内でなるべく被らないように最大5枚選出
-      const batch = [];
-      const usedAnswers = new Set();
-      const leftover = [];
-
-      for (const h of matchState.queue) {
-        const ans = getMatchAnswerText(h, selectedMode);
-        if (batch.length < 5 && !usedAnswers.has(ans)) {
-          batch.push(h);
-          usedAnswers.add(ans);
-        } else {
-          leftover.push(h);
-        }
-      }
-      while (batch.length < 5 && leftover.length > 0) {
-        batch.push(leftover.shift());
-      }
-
-      matchState.currentBatch = batch;
-      matchState.queue = leftover;
+    function loadMatchBatch(idx) {
+      matchState.batchIndex = idx;
+      matchState.currentBatch = matchState.batches[idx];
       matchState.matchedInBatch = 0;
       matchState.selectedLeft = null;
       matchState.selectedRight = null;
-
       updateMatchRemaining();
       renderMatchBoard();
     }
 
     function updateMatchRemaining() {
-      const rem = matchState.queue.length + (matchState.currentBatch.length - matchState.matchedInBatch);
+      const rem = matchState.playedList.length - matchState.clearedTotal;
       document.getElementById("matchRemaining").textContent = String(rem);
     }
 
     function renderMatchBoard() {
-      const leftCol = document.getElementById("leftCol");
-      const rightCol = document.getElementById("rightCol");
+      const leftCol = document.getElementById("matchLeftCol");
+      const rightCol = document.getElementById("matchRightCol");
       leftCol.innerHTML = "";
       rightCol.innerHTML = "";
 
-      const leftItems = shuffle(matchState.currentBatch);
-      const rightItems = shuffle(matchState.currentBatch);
-
-      leftItems.forEach(h => {
+      shuffle(matchState.currentBatch).forEach(h => {
+        const pair = getPairText(h, matchState.mode);
         const card = document.createElement("div");
-        card.className = "card";
-        card.textContent = h.name;
-        card.dataset.answer = getMatchAnswerText(h, selectedMode);
+        card.className = "match-card";
+        card.textContent = pair.left;
+        card.dataset.key = pair.matchKey;
         card.onclick = () => selectMatchCard("left", card, h);
         leftCol.appendChild(card);
       });
 
-      rightItems.forEach(h => {
+      shuffle(matchState.currentBatch).forEach(h => {
+        const pair = getPairText(h, matchState.mode);
         const card = document.createElement("div");
-        card.className = "card answer-card";
-        card.textContent = getMatchAnswerText(h, selectedMode);
-        card.dataset.answer = getMatchAnswerText(h, selectedMode);
+        card.className = "match-card answer-card";
+        card.textContent = pair.right;
+        card.dataset.key = pair.matchKey;
         card.onclick = () => selectMatchCard("right", card, h);
         rightCol.appendChild(card);
       });
     }
 
-    function selectMatchCard(side, el, hormone) {
+    function selectMatchCard(side, el, item) {
       if (el.classList.contains("correct")) return;
       playSound("tap");
 
       if (side === "left") {
         if (matchState.selectedLeft) matchState.selectedLeft.el.classList.remove("selected");
-        matchState.selectedLeft = { el, hormone };
+        matchState.selectedLeft = { el, item };
         el.classList.add("selected");
       } else {
         if (matchState.selectedRight) matchState.selectedRight.el.classList.remove("selected");
-        matchState.selectedRight = { el, hormone };
+        matchState.selectedRight = { el, item };
         el.classList.add("selected");
       }
 
@@ -1395,8 +2272,8 @@
       matchState.selectedLeft = null;
       matchState.selectedRight = null;
 
-      // 解答テキストが一致すれば正解（同一器官・作用が並んだ場合も正しく判定）
-      const isCorrect = l.el.dataset.answer === r.el.dataset.answer;
+      // 同一器官（例：下垂体前葉）が複数並んでも正しく判定できるよう matchKey で照合
+      const isCorrect = l.el.dataset.key === r.el.dataset.key;
 
       if (isCorrect) {
         playSound("ok");
@@ -1406,21 +2283,27 @@
         r.el.classList.add("correct");
 
         matchState.combo++;
-        if (matchState.combo > matchState.maxCombo) {
-          matchState.maxCombo = matchState.combo;
-        }
+        if (matchState.combo > matchState.maxCombo) matchState.maxCombo = matchState.combo;
         document.getElementById("matchCombo").textContent = String(matchState.combo);
 
-        // 弱点復習モードでノーミス正解なら弱点から自動解除
-        if (matchState.isWeakMode && !matchState.missedSet.has(l.hormone.id)) {
-          removeWeakId(l.hormone.id);
+        // ノーミスで正解した項目を弱点から解除
+        const targetHormone = matchState.mode === "organ" ? r.item : l.item;
+        if (matchState.isWeakMode && !matchState.missedSet.has(targetHormone.id)) {
+          removeWeakId(targetHormone.id);
         }
 
         matchState.matchedInBatch++;
+        matchState.clearedTotal++;
         updateMatchRemaining();
 
         if (matchState.matchedInBatch === matchState.currentBatch.length) {
-          setTimeout(nextMatchBatch, 320);
+          setTimeout(() => {
+            if (matchState.batchIndex + 1 < matchState.batches.length) {
+              loadMatchBatch(matchState.batchIndex + 1);
+            } else {
+              finishMatchGame();
+            }
+          }, 320);
         }
       } else {
         playSound("ng");
@@ -1428,8 +2311,9 @@
         matchState.combo = 0;
         document.getElementById("matchCombo").textContent = "0";
 
-        matchState.missedSet.add(l.hormone.id);
-        addWeakId(l.hormone.id);
+        const missedHormone = matchState.mode === "organ" ? r.item : l.item;
+        matchState.missedSet.add(missedHormone.id);
+        addWeakId(missedHormone.id);
 
         l.el.classList.remove("selected");
         r.el.classList.remove("selected");
@@ -1441,18 +2325,12 @@
           r.el.classList.remove("wrong");
         }, 380);
 
-        showMatchHint(`💡 ${l.hormone.name}【${l.hormone.organ}】：${l.hormone.clinical}`);
+        const toast = document.getElementById("matchHintToast");
+        toast.textContent = `💡 ${missedHormone.name}（${missedHormone.organ}）：${missedHormone.hint}`;
+        toast.classList.add("show");
+        if (matchState.hintTimer) clearTimeout(matchState.hintTimer);
+        matchState.hintTimer = setTimeout(() => toast.classList.remove("show"), 3800);
       }
-    }
-
-    function showMatchHint(text) {
-      const toast = document.getElementById("hintToast");
-      toast.textContent = text;
-      toast.classList.add("show");
-      if (matchState.hintTimer) clearTimeout(matchState.hintTimer);
-      matchState.hintTimer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 3600);
     }
 
     function finishMatchGame() {
@@ -1460,76 +2338,74 @@
       elapsedSec = (performance.now() - startTime) / 1000;
       playSound("clear");
 
+      const rank = calcRank(matchState.missCount);
       let isNewRecord = false;
       if (!matchState.isWeakMode) {
-        const key = `match_${selectedUnit}_${selectedMode}`;
-        isNewRecord = updateBestTime(key, elapsedSec);
+        isNewRecord = saveCourseRecord(`match_${matchState.mode}_${matchState.courseId}`, elapsedSec, rank);
       }
 
-      const missedList = matchState.playedList.filter(h => matchState.missedSet.has(h.id));
-      renderResultScreen({
+      const missed = matchState.playedList.filter(h => matchState.missedSet.has(h.id));
+      const reviewHtml = missed.length > 0
+        ? missed.map(h => `
+            <div class="review-item">
+              <div class="review-name">${escapeHtml(h.name)}（${escapeHtml(h.organ)}）</div>
+              <div><strong>主な作用：</strong>${escapeHtml(h.action)}</div>
+              <div style="color:var(--muted);">💡 ${escapeHtml(h.hint)}</div>
+            </div>
+          `).join("")
+        : `<div class="perfect-box">🎉 ミスなしパーフェクト！ホルモンの分泌器官と作用がしっかり定着しています！</div>`;
+
+      renderCommonResult({
+        rank,
         timeSec: elapsedSec,
         misses: matchState.missCount,
         isNewRecord,
         thirdLabel: "最大連続",
         thirdValue: `${matchState.maxCombo}回`,
-        missedList,
-        topicPool: missedList.length > 0 ? missedList : matchState.playedList
+        reviewTitle: missed.length > 0 ? "今回ミスしたホルモン（弱点リストに登録済み）" : "今回の結果",
+        reviewHtml
       });
     }
 
     /**
      * =========================================================================
-     * 6. モード2：分泌器官 3つ集めチャレンジ
+     * 8. タブ②：🎯 3つ集めチャレンジ（全5問連続クリア）
      * =========================================================================
      */
     function startCollectGame() {
       playSound("tap");
-      lastPlayedType = "collect";
+      lastSession = { tab: "collect" };
 
       collectState = {
-        organOrder: shuffle(COLLECT_TARGET_ORGANS),
-        currentIdx: 0,
+        qIndex: 0,
         cards: [],
-        selectedIds: new Set(),
+        selectedKeys: new Set(),
         missCount: 0,
-        missedSet: new Set(),
         isLocked: false
       };
 
       document.getElementById("collectMiss").textContent = "0";
       showScreen("collectPlayScreen");
-
-      stopTimer();
-      startTime = performance.now();
-      elapsedSec = 0;
-      document.getElementById("collectTimer").textContent = "0.0";
-      timerInterval = setInterval(() => {
-        elapsedSec = (performance.now() - startTime) / 1000;
-        document.getElementById("collectTimer").textContent = elapsedSec.toFixed(1);
-      }, 100);
-
-      loadCollectQuestion();
+      startTimer("collectTimer");
+      loadCollectQuestion(0);
     }
 
-    function loadCollectQuestion() {
-      const targetOrgan = collectState.organOrder[collectState.currentIdx];
-      collectState.selectedIds = new Set();
+    function loadCollectQuestion(idx) {
+      collectState.qIndex = idx;
+      collectState.selectedKeys = new Set();
       collectState.isLocked = false;
 
-      // 正解器官からランダム3枚＋他器官からダミー3枚
-      const correctPool = shuffle(HORMONES.filter(h => h.organ === targetOrgan)).slice(0, 3);
-      const dummyPool = shuffle(HORMONES.filter(h => h.organ !== targetOrgan)).slice(0, 3);
-      collectState.cards = shuffle([...correctPool, ...dummyPool]);
+      const q = COLLECT_QUESTIONS[idx];
+      collectState.cards = shuffle(q.cards);
 
-      document.getElementById("collectProgress").textContent =
-        `第${collectState.currentIdx + 1}問 / 全${COLLECT_TARGET_ORGANS.length}問`;
-      document.getElementById("collectTargetOrgan").textContent = `【${targetOrgan}】`;
+      document.getElementById("collectProgress").textContent = `第${idx + 1}問 / ${COLLECT_QUESTIONS.length}`;
+      document.getElementById("collectQuestionTitle").textContent = q.title;
       document.getElementById("collectSelectCount").textContent = "選択中: 0 / 3";
 
       const fb = document.getElementById("collectFeedback");
       fb.className = "collect-feedback";
       fb.textContent = "";
+      document.getElementById("collectRetryFromOneBtn").style.display = "none";
 
       renderCollectCards();
     }
@@ -1537,98 +2413,81 @@
     function renderCollectCards() {
       const grid = document.getElementById("collectGrid");
       grid.innerHTML = "";
-
-      collectState.cards.forEach(h => {
+      collectState.cards.forEach(c => {
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "collect-card" + (collectState.selectedIds.has(h.id) ? " selected" : "");
-        btn.dataset.id = h.id;
-        btn.textContent = h.name;
-        btn.onclick = () => onTapCollectCard(h);
+        btn.className = "collect-card" + (collectState.selectedKeys.has(c.key) ? " selected" : "");
+        btn.dataset.key = c.key;
+        btn.textContent = c.label;
+        btn.onclick = () => onTapCollectCard(c);
         grid.appendChild(btn);
       });
     }
 
-    function onTapCollectCard(hormone) {
+    function onTapCollectCard(card) {
       if (collectState.isLocked) return;
 
-      if (collectState.selectedIds.has(hormone.id)) {
-        // 選択解除
+      if (collectState.selectedKeys.has(card.key)) {
         playSound("tap");
-        collectState.selectedIds.delete(hormone.id);
+        collectState.selectedKeys.delete(card.key);
       } else {
-        if (collectState.selectedIds.size >= 3) return;
+        if (collectState.selectedKeys.size >= 3) return;
         playSound("tap");
-        collectState.selectedIds.add(hormone.id);
+        collectState.selectedKeys.add(card.key);
       }
 
-      document.getElementById("collectSelectCount").textContent =
-        `選択中: ${collectState.selectedIds.size} / 3`;
+      document.getElementById("collectSelectCount").textContent = `選択中: ${collectState.selectedKeys.size} / 3`;
       renderCollectCards();
 
-      // 3枚目をタップした瞬間に自動判定
-      if (collectState.selectedIds.size === 3) {
+      if (collectState.selectedKeys.size === 3) {
         judgeCollectQuestion();
       }
     }
 
     function judgeCollectQuestion() {
       collectState.isLocked = true;
-      const targetOrgan = collectState.organOrder[collectState.currentIdx];
-      const chosenHormones = collectState.cards.filter(h => collectState.selectedIds.has(h.id));
-      const wrongHormones = chosenHormones.filter(h => h.organ !== targetOrgan);
+      const q = COLLECT_QUESTIONS[collectState.qIndex];
+      const chosen = collectState.cards.filter(c => collectState.selectedKeys.has(c.key));
+      const wrongs = chosen.filter(c => !c.isCorrect);
 
       const cardEls = document.querySelectorAll("#collectGrid .collect-card");
       const fb = document.getElementById("collectFeedback");
 
-      if (wrongHormones.length === 0) {
-        // 正解！
+      if (wrongs.length === 0) {
         playSound("ok");
         cardEls.forEach(el => {
-          if (collectState.selectedIds.has(el.dataset.id)) {
+          if (collectState.selectedKeys.has(el.dataset.key)) {
             el.classList.remove("selected");
             el.classList.add("correct");
           }
         });
         fb.className = "collect-feedback show-ok";
-        fb.textContent = `⭕ 正解！【${targetOrgan}】の3種をバッチリ見抜きました！`;
+        fb.textContent = `⭕ 正解！${q.hint}`;
 
         setTimeout(() => {
-          collectState.currentIdx++;
-          if (collectState.currentIdx >= collectState.organOrder.length) {
+          if (collectState.qIndex + 1 >= COLLECT_QUESTIONS.length) {
             finishCollectGame();
           } else {
-            loadCollectQuestion();
+            loadCollectQuestion(collectState.qIndex + 1);
           }
-        }, 800);
+        }, 900);
       } else {
-        // 不正解：ミス加算・弱点記録・1.8秒後に第1問からやり直し
         playSound("ng");
         collectState.missCount++;
         document.getElementById("collectMiss").textContent = String(collectState.missCount);
 
-        wrongHormones.forEach(wh => {
-          collectState.missedSet.add(wh.id);
-          addWeakId(wh.id);
-        });
-
         cardEls.forEach(el => {
-          if (collectState.selectedIds.has(el.dataset.id)) {
+          if (collectState.selectedKeys.has(el.dataset.key)) {
             el.classList.remove("selected");
-            const isWrong = wrongHormones.some(wh => wh.id === el.dataset.id);
+            const isWrong = wrongs.some(w => w.key === el.dataset.key);
             el.classList.add(isWrong ? "wrong" : "correct");
           }
         });
 
-        const firstWrong = wrongHormones[0];
+        const wrongDesc = wrongs.map(w => `${w.label}（${w.reason}）`).join("・");
         fb.className = "collect-feedback show-ng";
-        fb.textContent = `❌ 不正解！${firstWrong.name}は【${firstWrong.organ}】から分泌されます。最初からやり直し！`;
-
-        setTimeout(() => {
-          collectState.organOrder = shuffle(COLLECT_TARGET_ORGANS);
-          collectState.currentIdx = 0;
-          loadCollectQuestion();
-        }, 1800);
+        fb.textContent = `❌ 不正解！ダミー：${wrongDesc}。💡 ${q.hint}`;
+        document.getElementById("collectRetryFromOneBtn").style.display = "block";
       }
     }
 
@@ -1637,37 +2496,41 @@
       elapsedSec = (performance.now() - startTime) / 1000;
       playSound("clear");
 
-      const isNewRecord = updateBestTime("collect_5organs", elapsedSec);
-      const missedList = HORMONES.filter(h => collectState.missedSet.has(h.id));
-      const targetPool = HORMONES.filter(h => COLLECT_TARGET_ORGANS.includes(h.organ));
+      const rank = calcRank(collectState.missCount);
+      const isNewRecord = saveCourseRecord("collect_5q", elapsedSec, rank);
 
-      renderResultScreen({
+      const summaryHtml = COLLECT_QUESTIONS.map((q, idx) => {
+        const ans = q.cards.filter(c => c.isCorrect).map(c => c.label).join("・");
+        return `
+          <div class="review-item">
+            <div class="review-name" style="color:var(--primary-dark);">第${idx + 1}問：${escapeHtml(q.title)}</div>
+            <div><strong>正解3つ：</strong>${escapeHtml(ans)}</div>
+            <div style="color:var(--muted);">💡 ${escapeHtml(q.hint)}</div>
+          </div>
+        `;
+      }).join("");
+
+      renderCommonResult({
+        rank,
         timeSec: elapsedSec,
         misses: collectState.missCount,
         isNewRecord,
-        thirdLabel: "クリア問題数",
-        thirdValue: "全5問",
-        missedList,
-        topicPool: missedList.length > 0 ? missedList : targetPool
+        thirdLabel: "連続クリア",
+        thirdValue: "5問制覇",
+        reviewTitle: "🎉 全5問連続クリア！重要テーマまとめ",
+        reviewHtml: summaryHtml
       });
     }
 
     /**
      * =========================================================================
-     * 7. 共通リザルト画面
+     * 9. 共通リザルト画面（基礎学習用）
      * =========================================================================
      */
-    function renderResultScreen({ timeSec, misses, isNewRecord, thirdLabel, thirdValue, missedList, topicPool }) {
-      // ランク判定（ミス0: S / ミス1〜2: A / それ以外: B）
-      let rank = "B";
-      let subText = "粘り強くクリアできました！ミスを見直してリベンジしよう！";
-      if (misses === 0) {
-        rank = "S";
-        subText = "パーフェクト！内分泌の理解がバッチリ定着しています！";
-      } else if (misses <= 2) {
-        rank = "A";
-        subText = "素晴らしい！あと少しでパーフェクトクリアです！";
-      }
+    function renderCommonResult({ rank, timeSec, misses, isNewRecord, thirdLabel, thirdValue, reviewTitle, reviewHtml }) {
+      const subText = rank === "S"
+        ? "パーフェクト！内分泌・ホルモンの知識が完璧に定着しています！"
+        : (rank === "A" ? "素晴らしい！あと少しでノーミスSランクです！" : "粘り強くクリア！ミスしたホルモンを見直してリベンジしよう！");
 
       document.getElementById("newRecordBadge").style.display = isNewRecord ? "inline-block" : "none";
       const rankEl = document.getElementById("rankBadge");
@@ -1680,40 +2543,385 @@
       document.getElementById("finalThirdLabel").textContent = thirdLabel;
       document.getElementById("finalThirdValue").textContent = thirdValue;
 
-      // グループ学習「ひとこと解説お題」
-      const topic = topicPool[Math.floor(Math.random() * topicPool.length)];
-      document.getElementById("topicTarget").textContent = `お題：${topic.name}`;
-      const topicAns = document.getElementById("topicAnswer");
-      topicAns.classList.remove("open");
-      topicAns.innerHTML = `
-        <div><strong>分泌器官：</strong>${topic.organ}</div>
-        <div><strong>主な作用：</strong>${topic.action}</div>
-        <div style="margin-top:4px; color:var(--primary);"><strong>💡 国試・臨床ポイント：</strong>${topic.clinical}</div>
-      `;
+      const topic = GROUP_TOPICS[Math.floor(Math.random() * GROUP_TOPICS.length)];
+      document.getElementById("topicTarget").textContent = topic.title;
+      const ansEl = document.getElementById("topicAnswer");
+      ansEl.classList.remove("open");
+      ansEl.innerHTML = topic.answer;
 
-      // ミス一覧（ミスがある場合のみ表示）
-      const missSection = document.getElementById("missSection");
-      const missListEl = document.getElementById("missList");
-      if (missedList.length > 0) {
-        missSection.style.display = "block";
-        missListEl.innerHTML = missedList.map(h => `
-          <div class="miss-item">
-            <div class="miss-name">${h.name}</div>
-            <div><strong>分泌器官：</strong>${h.organ}</div>
-            <div><strong>主な作用：</strong>${h.action}</div>
-            <div style="color:var(--muted); margin-top:2px;">💡 ${h.clinical}</div>
-          </div>
-        `).join("");
-      } else {
-        missSection.style.display = "none";
-      }
+      document.getElementById("reviewSectionTitle").textContent = reviewTitle;
+      document.getElementById("reviewList").innerHTML = reviewHtml;
 
       showScreen("resultScreen");
     }
 
     /**
      * =========================================================================
-     * 8. イベント登録・初期化
+     * 10. 【独立モジュール】国家試験過去問モード（KokushiModule・全30問）
+     *     localStorageキー: ot_kokushi_hormone
+     * =========================================================================
+     */
+    const KOKUSHI_STORAGE_KEY = "ot_kokushi_hormone";
+
+    const KOKUSHI_DATA = [
+      {"id": "60-AM-56", "meta": "第60回 午前 問56", "question": "下垂体後葉から分泌されるホルモンはどれか。2つ選べ。", "choices": ["グレリン", "エストロゲン", "オキシトシン", "バソプレシン", "アルドステロン"], "answers": [3, 4], "point": "下垂体後葉からはオキシトシンとバソプレシンが分泌される。", "choiceNotes": ["× 胃内分泌細胞で産生される。", "× 卵巣から分泌される。", "○ 乳汁の排泄や子宮収縮を促す。", "○ 集合管での水の再吸収を促す（抗利尿）。", "× 副腎皮質から分泌される。"]},
+      {"id": "54-AM-68", "meta": "第54回 午前 問68", "question": "集合管における尿の濃縮に関わるホルモンはどれか。", "choices": ["グルカゴン", "メラトニン", "オキシトシン", "パラトルモン", "アルドステロン"], "answers": [5], "point": "アルドステロンは腎臓の集合管に作用し、Na+と水の再吸収を促して尿を濃縮する。", "choiceNotes": ["× 膵臓A細胞から分泌され血糖を上昇させる。", "× 松果体から分泌され概日リズムに関与する。", "× 下垂体後葉から分泌される。", "× 副甲状腺から分泌され血中Caを上昇させる。", "○ 集合管に作用してNa+と水の再吸収を促す。"]},
+      {"id": "58-PM-62", "meta": "第58回 午後 問62", "question": "下垂体前葉から分泌されるホルモンはどれか。", "choices": ["メラトニン", "オキシトシン", "バソプレシン", "プロラクチン", "アルドステロン"], "answers": [4], "point": "プロラクチンは下垂体前葉から分泌され、乳汁産生・分泌を促進する。", "choiceNotes": ["× 松果体より分泌される。", "× 下垂体後葉から分泌される。", "× 下垂体後葉から分泌される。", "○ 下垂体前葉から分泌される。", "× 副腎皮質から分泌される。"]},
+      {"id": "44-PM-33", "meta": "第44回 午後 問33", "question": "正しいのはどれか。", "choices": ["レプチンは摂食行動を促進する", "インスリンは血糖値を上昇させる", "バソプレシンは尿量を増加させる", "甲状腺ホルモンは体温を上昇させる", "上皮小体ホルモンは骨塩量を増加させる"], "answers": [4], "point": "甲状腺ホルモンは基礎代謝率を亢進させ、熱産生を高めて体温を上昇させる。", "choiceNotes": ["× 摂食行動を抑制する。", "× 血糖値を低下させる。", "× 水の再吸収を促し尿量を減少させる。", "○ 基礎代謝を亢進させ体温を上昇させる。", "× 骨吸収を促し骨塩量を減少させる。"]},
+      {"id": "56-AM-68", "meta": "第56回 午前 問68", "question": "副腎皮質ホルモンについて正しいのはどれか。", "choices": ["血糖値に影響しない。", "ストレス時に変動しない。", "早朝に分泌が最大となる。", "ペプチドホルモンである。", "アドレナリンから生合成される。"], "answers": [3], "point": "糖質コルチコイド（コルチゾール）は早朝から起床時に分泌が最大となる日内リズムを示す。", "choiceNotes": ["× 糖新生を促進し血糖値を上昇させる。", "× ストレス刺激により分泌が亢進する。", "○ 早朝から起床時に分泌が最大となる。", "× コレステロールを原料とするステロイドホルモンである。", "× コレステロールから生合成される。"]},
+      {"id": "50-AM-68", "meta": "第50回 午前 問68", "question": "内分泌器官と分泌されるホルモンの組合せで誤っているのはどれか。", "choices": ["松果体―カルシトニン", "視床下部―ソマトスタチン", "副腎皮質―コルチゾール", "下垂体前葉―成長ホルモン", "下垂体後葉―バソプレシン"], "answers": [1], "point": "カルシトニンは甲状腺のC細胞（傍濾胞細胞）から分泌される（松果体はメラトニン）。", "choiceNotes": ["× カルシトニンは甲状腺から分泌される。", "○ 視床下部から分泌される。", "○ 副腎皮質から分泌される。", "○ 下垂体前葉から分泌される。", "○ 下垂体後葉から分泌される。"]},
+      {"id": "52-PM-68", "meta": "第52回 午後 問68", "question": "分娩後の乳汁分泌に作用するホルモンはどれか。", "choices": ["ドパミン", "エストロゲン", "プロラクチン", "プロゲステロン", "ゴナドトロピン"], "answers": [3], "point": "分娩後にエストロゲンが急減するとプロラクチンの抑制が解除され、乳汁産生・分泌が開始される。", "choiceNotes": ["× プロラクチン分泌を抑制する（PIF）。", "× 妊娠中に乳腺を発達させるがプロラクチンを抑制する。", "○ 乳汁の産生・分泌を開始・促進する。", "× 妊娠を維持し乳腺を発達させる。", "× 性腺刺激ホルモンである。"]},
+      {"id": "59-PM-58", "meta": "第59回 午後 問58", "question": "甲状腺が分泌するホルモンはどれか。", "choices": ["メラトニン", "オキシトシン", "カルシトニン", "バソプレシン", "パラトルモン"], "answers": [3], "point": "甲状腺からはサイロキシン、トリヨードサイロニン、カルシトニン（C細胞）が分泌される。", "choiceNotes": ["× 松果体から分泌される。", "× 下垂体後葉から分泌される。", "○ 甲状腺C細胞から分泌され骨吸収を抑制する。", "× 下垂体後葉から分泌される。", "× 副甲状腺（上皮小体）から分泌される。"]},
+      {"id": "57-AM-58", "meta": "第57回 午前 問58", "question": "副腎髄質から分泌されるホルモンはどれか。", "choices": ["レニン", "アンドロゲン", "コルチゾール", "アルドステロン", "ノルアドレナリン"], "answers": [5], "point": "副腎髄質からはカテコールアミン（アドレナリン、ノルアドレナリン、ドパミン）が分泌される。", "choiceNotes": ["× 腎臓から分泌される。", "× 主に精巣や副腎皮質網状層から分泌される。", "× 副腎皮質束状層から分泌される。", "× 副腎皮質球状層から分泌される。", "○ 副腎髄質から分泌される。"]},
+      {"id": "53-AM-67", "meta": "第53回 午前 問67", "question": "副甲状腺ホルモンで正しいのはどれか。", "choices": ["骨吸収を促進する。", "好酸性細胞で分泌される。", "リンの再吸収を促進する。", "重炭酸イオンの再吸収を促進する。", "遠位尿細管でのカルシウム再吸収を抑制する。"], "answers": [1], "point": "副甲状腺ホルモン（パラトルモン）は破骨細胞を活性化して骨吸収を促進し、血中Ca濃度を高める。", "choiceNotes": ["○ 破骨細胞を活性化し骨吸収を促進する。", "× 主細胞から分泌される。", "× 尿細管でのリン再吸収を抑制する。", "× 重炭酸イオンの再吸収を抑制する。", "× 遠位尿細管でのカルシウム再吸収を促進する。"]},
+      {"id": "44-PM-32", "meta": "第44回 午後 問32", "question": "正しいのはどれか。", "choices": ["プロラクチンは乳腺から分泌される", "卵胞刺激ホルモンは視床下部から分泌される", "エストロゲンは下垂体ホルモン分泌を促進する", "黄体化ホルモンはプロゲステロンの分泌を促進する", "性腺刺激ホルモン放出ホルモンは下垂体から分泌される"], "answers": [4], "point": "黄体化ホルモン（LH）は排卵を誘発して黄体を形成させ、プロゲステロンの分泌を促進する。", "choiceNotes": ["× 下垂体前葉から分泌される。", "× 下垂体前葉から分泌される。", "× 通常はネガティブフィードバックにより抑制する。", "○ 黄体を刺激してプロゲステロン分泌を促進する。", "× 視床下部から分泌される。"]},
+      {"id": "47-AM-68", "meta": "第47回 午前 問68", "question": "成長ホルモンについて誤っているのはどれか。", "choices": ["蛋白質である", "下垂体前葉で合成される", "下垂体前葉から分泌される", "成人になると分泌が停止する", "小児期の分泌不全によって低身長をきたす"], "answers": [4], "point": "成長ホルモンは成人期以降も生涯にわたり分泌され、代謝調節や組織修復に働く。", "choiceNotes": ["○ 単純蛋白質である。", "○ 下垂体前葉の成長ホルモン分泌細胞で合成される。", "○ 下垂体前葉から分泌される。", "× 成人以降も分泌され代謝調節等に関与する。", "○ 小児期の分泌不全で下垂体性低身長症をきたす。"]},
+      {"id": "51-AM-68", "meta": "第51回 午前 問68", "question": "排卵を誘発するのはどれか。", "choices": ["黄体ホルモン上昇", "オキシトシン上昇", "卵巣ホルモン低下", "黄体形成ホルモン上昇", "卵胞刺激ホルモン低下"], "answers": [4], "point": "エストロゲン分泌の高まりを受けて下垂体からLHが大量に一過性分泌され（LHサージ）、排卵が誘発される。", "choiceNotes": ["× 排卵後に黄体から分泌される。", "× 分娩時の子宮収縮や射乳に関与する。", "× エストロゲンの急激な上昇が契機となる。", "○ LHサージ（急激な上昇）によって排卵が誘発される。", "× FSHも排卵期に一過性に上昇する。"]},
+      {"id": "42-PM-33", "meta": "第42回 午後 問33", "question": "下垂体後葉から分泌されるホルモンはどれか。", "choices": ["成長ホルモン", "エストロゲン", "オキシトシン", "甲状腺刺激ホルモン", "副腎皮質刺激ホルモン"], "answers": [3], "point": "下垂体後葉からはオキシトシンとバソプレシンが分泌される。", "choiceNotes": ["× 下垂体前葉から分泌される。", "× 卵巣から分泌される。", "○ 下垂体後葉から分泌される。", "× 下垂体前葉から分泌される。", "× 下垂体前葉から分泌される。"]},
+      {"id": "54-AM-59", "meta": "第54回 午前 問59", "question": "ホルモンの産生で正しいのはどれか。", "choices": ["エリスロポエチンは骨髄で産生される。", "グルカゴンはLangerhans<ランゲルハンス>島B細胞で産生される。", "ソマトスタチンは黄体で産生される。", "トリヨードサイロニンは上皮小体で産生される。", "バソプレシンは視床下部で産生される。"], "answers": [5], "point": "バソプレシンは視床下部の視索上核等で産生され、下垂体後葉へ運ばれて分泌される。", "choiceNotes": ["× 腎臓で産生される。", "× ランゲルハンス島A（α）細胞で産生される。", "× 視床下部や膵島D（δ）細胞で産生される。", "× 甲状腺で産生される。", "○ 視床下部で産生され下垂体後葉から分泌される。"]},
+      {"id": "56-PM-68", "meta": "第56回 午後 問68", "question": "水溶性ホルモンはどれか。2つ選べ。", "choices": ["エストロゲン", "グルカゴン", "コルチゾール", "サイロキシン", "バゾプレッシン"], "answers": [2, 5], "point": "ペプチドホルモンであるグルカゴンやバソプレシンは水溶性ホルモンである。", "choiceNotes": ["× ステロイドホルモン（脂溶性）である。", "○ ペプチドホルモン（水溶性）である。", "× ステロイドホルモン（脂溶性）である。", "× 甲状腺ホルモン（脂溶性）である。", "○ ペプチドホルモン（水溶性）である。"]},
+      {"id": "54-PM-67", "meta": "第54回 午後 問67", "question": "血糖を上昇させる作用のあるホルモンはどれか。", "choices": ["アドレナリン", "アルドステロン", "カルシトニン", "パラトルモン", "プロラクチン"], "answers": [1], "point": "アドレナリンは肝臓や骨格筋のグリコーゲン分解を促し、速やかに血糖値を上昇させる。", "choiceNotes": ["○ グリコーゲン分解を促進して血糖値を上昇させる。", "× Na+再吸収とK+排泄に関与する。", "× 骨吸収を抑制し血中Caを低下させる。", "× 骨吸収を促し血中Caを上昇させる。", "× 乳汁産生・分泌を促進する。"]},
+      {"id": "58-AM-57", "meta": "第58回 午前 問57", "question": "腎臓から分泌されるホルモンはどれか。2つ選べ。", "choices": ["レニン", "メラトニン", "カルシトニン", "バソプレシン", "エリスロポエチン"], "answers": [1, 5], "point": "腎臓からは血圧調節に関わるレニンと、赤血球造血を促すエリスロポエチンが分泌される。", "choiceNotes": ["○ 傍糸球体装置から分泌される。", "× 松果体から分泌される。", "× 甲状腺から分泌される。", "× 下垂体後葉から分泌される。", "○ 間質細胞等から分泌され造血を促進する。"]},
+      {"id": "45-AM-68", "meta": "第45回 午前 問68", "question": "ホルモンと産生部位との組合せで正しいのはどれか。", "choices": ["プロラクチン放出ホルモン―下垂体", "サイロキシン―視床下部", "カルシトニン―上皮小体", "セクレチン―副腎", "エリスロポエチン―腎臓"], "answers": [5], "point": "エリスロポエチンは腎臓で産生・分泌される。", "choiceNotes": ["× 視床下部で産生される。", "× 甲状腺で産生される。", "× 甲状腺の傍濾胞細胞で産生される。", "× 十二指腸粘膜（S細胞）で産生される。", "○ 腎臓で産生される。"]},
+      {"id": "55-AM-61", "meta": "第55回 午前 問61", "question": "副腎髄質から分泌されるホルモンはどれか。2つ選べ。", "choices": ["アドレナリン", "アルドステロン", "アンドロゲン", "コルチゾール", "ノルアドレナリン"], "answers": [1, 5], "point": "副腎髄質からはアドレナリンとノルアドレナリン（カテコールアミン）が分泌される。", "choiceNotes": ["○ 副腎髄質から分泌される。", "× 副腎皮質球状層から分泌される。", "× 副腎皮質網状層等から分泌される。", "× 副腎皮質束状層から分泌される。", "○ 副腎髄質から分泌される。"]},
+      {"id": "46-AM-67", "meta": "第46回 午前 問67", "question": "内分泌器官とホルモンとの組合せで正しいのはどれか。", "choices": ["膵臓―プロラクチン", "甲状腺―糖質コルチコイド", "副腎皮質―ノルアドレナリン", "副甲状腺―サイロキシン", "下垂体後葉―抗利尿ホルモン"], "answers": [5], "point": "下垂体後葉からは抗利尿ホルモン（バソプレシン）が分泌される。", "choiceNotes": ["× 下垂体前葉から分泌される。", "× 副腎皮質から分泌される。", "× 副腎髄質から分泌される。", "× 甲状腺から分泌される。", "○ 抗利尿ホルモン（バソプレシン）が分泌される。"]},
+      {"id": "48-PM-67", "meta": "第48回 午後 問67", "question": "内分泌物質の作用で正しいのはどれか。", "choices": ["バソプレシンは尿量増加に働く", "上皮小体ホルモンは血中Caを増加させる", "甲状腺ホルモンは基礎代謝率を低下させる", "インスリンはグルコースの細胞内取り込みを阻害する", "副腎皮質ホルモンは糖新生(グルコース産生)を阻害する"], "answers": [2], "point": "上皮小体ホルモン（パラトルモン）は骨吸収や腎での再吸収を促し血中Ca濃度を増加させる。", "choiceNotes": ["× 集合管で水再吸収を促し尿量を減少させる。", "○ 骨吸収や腎での再吸収を促し血中Caを増加させる。", "× 基礎代謝率を亢進（上昇）させる。", "× グルコースの細胞内取り込みを促進する。", "× 肝臓での糖新生を促進する。"]},
+      {"id": "52-AM-59", "meta": "第52回 午前 問59", "question": "同一の臓器から分泌されるホルモンの組合せで誤っているのはどれか。", "choices": ["アルドステロン―コルチゾール", "インスリン―グルカゴン", "エリスロポエチン―レニン", "オキシトシン―バソプレシン", "カルシトニン―パラトルモン"], "answers": [5], "point": "カルシトニンは甲状腺、パラトルモンは副甲状腺（上皮小体）から分泌される。", "choiceNotes": ["○ ともに副腎皮質から分泌される。", "○ ともに膵島（ランゲルハンス島）から分泌される。", "○ ともに腎臓から分泌される。", "○ ともに下垂体後葉から分泌される。", "× カルシトニンは甲状腺、パラトルモンは副甲状腺から分泌される。"]},
+      {"id": "59-AM-68", "meta": "第59回 午前 問68", "question": "同一の臓器から分泌されるホルモンの組合せで正しいのはどれか。", "choices": ["アルドステロン － エリスロポエチン", "グルカゴン － ガストリン", "バソプレシン － オキシトシン", "パラトルモン － カルシトニン", "レニン － コルチゾール"], "answers": [3], "point": "バソプレシンとオキシトシンはともに下垂体後葉から分泌される。", "choiceNotes": ["× アルドステロンは副腎皮質、エリスロポエチンは腎臓。", "× グルカゴンは膵臓、ガストリンは胃幽門部。", "○ ともに下垂体後葉から分泌される。", "× パラトルモンは副甲状腺、カルシトニンは甲状腺。", "× レニンは腎臓、コルチゾールは副腎皮質。"]},
+      {"id": "53-PM-67", "meta": "第53回 午後 問67", "question": "ホルモン分泌について正しいのはどれか。", "choices": ["プロラクチンは乳腺から分泌される。", "卵胞刺激ホルモンは視床下部から分泌される。", "エストロゲンは下垂体ホルモン分泌を促進する。", "黄体化ホルモンはプロゲステロンの分泌を促進する｡", "性腺刺激ホルモン放出ホルモンは下垂体から分泌される｡"], "answers": [4], "point": "黄体化ホルモン（LH）は排卵を誘発して黄体を形成させ、プロゲステロンの分泌を促進する。", "choiceNotes": ["× 下垂体前葉から分泌される。", "× 下垂体前葉から分泌される。", "× 通常はネガティブフィードバックで抑制する。", "○ 黄体に作用してプロゲステロン分泌を促す。", "× 視床下部から分泌される。"]},
+      {"id": "61-AM-66", "meta": "第61回 午前 問66", "question": "腸管におけるカルシウム吸収を低下させるのはどれか。2つ選べ。", "choices": ["エストロゲン", "蛋白質", "ビタミンD", "副腎皮質ホルモン", "リン"], "answers": [4, 5], "point": "副腎皮質ホルモン（過剰）およびリン（不溶性リン酸カルシウム形成）は腸管でのCa吸収を低下させる。", "choiceNotes": ["× Ca吸収を促進させる。", "× Ca吸収を促進させる。", "× 活性型ビタミンDは腸管でのCa吸収を促進する。", "○ 腸管におけるカルシウム吸収を抑制する。", "○ カルシウムと結合して吸収を低下させる。"]},
+      {"id": "58-AM-67", "meta": "第58回 午前 問67", "question": "血糖を上昇させる作用のあるホルモンはどれか。2つ選べ。", "choices": ["アドレナリン", "アルドステロン", "カルシトニン", "グルカゴン", "パラトルモン"], "answers": [1, 4], "point": "アドレナリンとグルカゴンは肝臓のグリコーゲン分解や糖新生を促進して血糖を上昇させる。", "choiceNotes": ["○ グリコーゲン分解を促し血糖を上昇させる。", "× 電解質代謝（Na+再吸収）に関与する。", "× 骨吸収を抑制する。", "○ 糖新生・グリコーゲン分解を促し血糖を上昇させる。", "× 血中Ca濃度を上昇させる。"]},
+      {"id": "42-PM-19", "meta": "第42回 午後 問19", "question": "骨成長を促進するのはどれか。2つ選べ。", "choices": ["抗利尿ホルモン", "甲状腺ホルモン", "副腎髄質ホルモン", "副甲状腺ホルモン", "成長ホルモン"], "answers": [2, 5], "point": "成長ホルモン（IGF-1誘導）と甲状腺ホルモン（骨代謝・軟骨成熟促進）は骨の長軸成長を促進する。", "choiceNotes": ["× 水分の再吸収に関与する。", "○ 軟骨細胞の増殖・骨化を促し骨成長に必須である。", "× 循環器系や代謝の調節に関与する。", "× 骨吸収を促進する。", "○ 骨端軟骨に作用して骨の成長を促進する。"]},
+      {"id": "57-PM-67", "meta": "第57回 午後 問67", "question": "下垂体前葉から分泌されるホルモンはどれか。", "choices": ["メラトニン", "オキシトシン", "バソプレシン", "プロラクチン", "テストステロン"], "answers": [4], "point": "プロラクチンは下垂体前葉から分泌される。", "choiceNotes": ["× 松果体から分泌される。", "× 下垂体後葉から分泌される。", "× 下垂体後葉から分泌される。", "○ 下垂体前葉から分泌される。", "× 精巣の間質細胞から分泌される。"]},
+      {"id": "49-AM-68", "meta": "第49回 午前 問68", "question": "下垂体後葉から分泌されるホルモンはどれか。2つ選べ。", "choices": ["グレリン", "エストロゲン", "オキシトシン", "バソプレシン", "アルドステロン"], "answers": [3, 4], "point": "下垂体後葉から分泌されるのはオキシトシンとバソプレシンである。", "choiceNotes": ["× 胃から分泌される。", "× 卵巣から分泌される。", "○ 下垂体後葉から分泌される。", "○ 下垂体後葉から分泌される。", "× 副腎皮質から分泌される。"]}
+    ];
+
+    const KokushiModule = (() => {
+      let sessionQuestions = [];
+      let currentIdx = 0;
+      let selectedNums = new Set();
+      let isAnswered = false;
+      let correctCount = 0;
+      let sessionMissed = [];
+
+      function loadRecord() {
+        try {
+          const raw = JSON.parse(localStorage.getItem(KOKUSHI_STORAGE_KEY) || "{}");
+          const validIds = new Set(KOKUSHI_DATA.map(q => q.id));
+          const clearedIds = Array.isArray(raw.clearedIds)
+            ? raw.clearedIds.filter(id => validIds.has(id))
+            : [];
+          const weakIds = Array.isArray(raw.weakIds)
+            ? raw.weakIds.filter(id => validIds.has(id))
+            : [];
+          return { clearedIds: [...new Set(clearedIds)], weakIds: [...new Set(weakIds)] };
+        } catch (e) {
+          return { clearedIds: [], weakIds: [] };
+        }
+      }
+
+      function saveRecord(rec) {
+        try {
+          localStorage.setItem(KOKUSHI_STORAGE_KEY, JSON.stringify({
+            clearedIds: [...new Set(rec.clearedIds)],
+            weakIds: [...new Set(rec.weakIds)]
+          }));
+        } catch (e) {}
+      }
+
+      function updateEntryBadge() {
+        const rec = loadRecord();
+        const el = document.getElementById("kokushiEntryBadge");
+        if (el) {
+          el.textContent = `クリア済 ${rec.clearedIds.length} / ${KOKUSHI_DATA.length}問`;
+        }
+      }
+
+      function openStartScreen() {
+        stopTimer();
+        playSound("tap");
+
+        const rec = loadRecord();
+        const total = KOKUSHI_DATA.length;
+        const cleared = rec.clearedIds.length;
+        const pct = total > 0 ? Math.round((cleared / total) * 100) : 0;
+
+        document.getElementById("kokushiStartProgressText").textContent = `クリア済 ${cleared} / ${total}問`;
+        document.getElementById("kokushiStartProgressPct").textContent = `${pct}%`;
+        document.getElementById("kokushiStartProgressBar").style.width = `${pct}%`;
+
+        const weakBtn = document.getElementById("kokushiBtnWeak");
+        if (rec.weakIds.length > 0) {
+          weakBtn.style.display = "flex";
+          document.getElementById("kokushiWeakCount").textContent = String(rec.weakIds.length);
+        } else {
+          weakBtn.style.display = "none";
+        }
+
+        showScreen("kokushiStartScreen");
+      }
+
+      function startSession(course) {
+        playSound("tap");
+        const rec = loadRecord();
+
+        if (course === "weak") {
+          sessionQuestions = shuffle(KOKUSHI_DATA.filter(q => rec.weakIds.includes(q.id)));
+          if (sessionQuestions.length === 0) {
+            openStartScreen();
+            return;
+          }
+        } else if (course === "sessionMissed") {
+          sessionQuestions = shuffle([...sessionMissed]);
+          if (sessionQuestions.length === 0) {
+            openStartScreen();
+            return;
+          }
+        } else if (course === "rand5") {
+          sessionQuestions = shuffle(KOKUSHI_DATA).slice(0, 5);
+        } else if (course === "rand10") {
+          sessionQuestions = shuffle(KOKUSHI_DATA).slice(0, 10);
+        } else {
+          sessionQuestions = shuffle(KOKUSHI_DATA);
+        }
+
+        currentIdx = 0;
+        correctCount = 0;
+        sessionMissed = [];
+
+        showScreen("kokushiPlayScreen");
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        const q = sessionQuestions[currentIdx];
+        const isMulti = q.answers.length > 1;
+
+        selectedNums = new Set();
+        isAnswered = false;
+
+        document.getElementById("kokushiMetaBadge").textContent = q.meta;
+        const typeBadge = document.getElementById("kokushiTypeBadge");
+        typeBadge.className = `kokushi-type-badge ${isMulti ? "multi" : "single"}`;
+        typeBadge.textContent = isMulti ? "【2つ選べ】" : "【1つ選べ】";
+
+        document.getElementById("kokushiPlayProgress").textContent = `${currentIdx + 1} / ${sessionQuestions.length}`;
+        document.getElementById("kokushiQuestionText").textContent = q.question;
+        document.getElementById("kokushiExplainCard").className = "kokushi-explain-card";
+
+        renderChoices();
+      }
+
+      function renderChoices() {
+        const q = sessionQuestions[currentIdx];
+        const listEl = document.getElementById("kokushiChoicesList");
+        listEl.innerHTML = "";
+
+        q.choices.forEach((choiceText, idx) => {
+          const num = idx + 1;
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "kokushi-choice-btn";
+
+          if (!isAnswered) {
+            if (selectedNums.has(num)) btn.classList.add("selected");
+          } else {
+            btn.disabled = true;
+            const isAns = q.answers.includes(num);
+            const isSel = selectedNums.has(num);
+            if (isAns) {
+              btn.classList.add("is-correct");
+            } else if (isSel && !isAns) {
+              btn.classList.add("is-wrong");
+            }
+          }
+
+          // <ランゲルハンス> 等の山括弧がHTMLタグ扱いされないよう textContent で構築
+          const numSpan = document.createElement("span");
+          numSpan.className = "kokushi-choice-num";
+          numSpan.textContent = String(num);
+
+          const textSpan = document.createElement("span");
+          textSpan.textContent = choiceText;
+
+          btn.appendChild(numSpan);
+          btn.appendChild(textSpan);
+          btn.onclick = () => onTapChoice(num);
+          listEl.appendChild(btn);
+        });
+      }
+
+      function onTapChoice(num) {
+        if (isAnswered) return;
+        const q = sessionQuestions[currentIdx];
+        const required = q.answers.length;
+
+        if (required === 1) {
+          selectedNums.add(num);
+          judgeCurrentQuestion();
+        } else {
+          if (selectedNums.has(num)) {
+            playSound("tap");
+            selectedNums.delete(num);
+            renderChoices();
+          } else {
+            selectedNums.add(num);
+            if (selectedNums.size >= required) {
+              judgeCurrentQuestion();
+            } else {
+              playSound("tap");
+              renderChoices();
+            }
+          }
+        }
+      }
+
+      function judgeCurrentQuestion() {
+        isAnswered = true;
+        const q = sessionQuestions[currentIdx];
+        const sortedSel = [...selectedNums].sort((a, b) => a - b);
+        const sortedAns = [...q.answers].sort((a, b) => a - b);
+
+        const isCorrect =
+          sortedSel.length === sortedAns.length &&
+          sortedSel.every((v, i) => v === sortedAns[i]);
+
+        const rec = loadRecord();
+        if (isCorrect) {
+          playSound("ok");
+          correctCount++;
+          if (!rec.clearedIds.includes(q.id)) rec.clearedIds.push(q.id);
+          rec.weakIds = rec.weakIds.filter(id => id !== q.id);
+        } else {
+          playSound("ng");
+          sessionMissed.push(q);
+          if (!rec.weakIds.includes(q.id)) rec.weakIds.push(q.id);
+        }
+        saveRecord(rec);
+        updateEntryBadge();
+
+        renderChoices();
+
+        const expCard = document.getElementById("kokushiExplainCard");
+        expCard.className = `kokushi-explain-card open ${isCorrect ? "ok" : "ng"}`;
+
+        const judgeTitle = document.getElementById("kokushiJudgeTitle");
+        judgeTitle.className = `kokushi-judge-title ${isCorrect ? "ok" : "ng"}`;
+        judgeTitle.innerHTML = `
+          <span>${isCorrect ? "⭕ 正解！" : "❌ 不正解…"}</span>
+          <span style="font-size:0.84rem;">正解：${sortedAns.join("・")}</span>
+        `;
+
+        document.getElementById("kokushiPointBox").innerHTML =
+          `<strong>💡 要点解説：</strong>${escapeHtml(q.point)}`;
+
+        document.getElementById("kokushiNotesList").innerHTML = q.choices.map((_, i) => {
+          const num = i + 1;
+          const isAns = q.answers.includes(num);
+          const note = (q.choiceNotes && q.choiceNotes[i]) ? q.choiceNotes[i] : (isAns ? "○ 正解" : "×");
+          return `
+            <div class="kokushi-note-row ${isAns ? "ans-row" : ""}">
+              <span class="kokushi-note-num">${num}.</span>
+              <span>${escapeHtml(note)}</span>
+            </div>
+          `;
+        }).join("");
+
+        document.getElementById("kokushiNextBtn").textContent =
+          (currentIdx + 1 < sessionQuestions.length) ? "次の問題へ ▶" : "結果を見る ▶";
+      }
+
+      function nextQuestion() {
+        playSound("tap");
+        currentIdx++;
+        if (currentIdx >= sessionQuestions.length) {
+          finishSession();
+        } else {
+          renderQuestion();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }
+
+      function finishSession() {
+        playSound("clear");
+        const total = sessionQuestions.length;
+        const rate = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+        // S: 100% / A: 80%以上 / B: 80%未満
+        let rank = "B";
+        let subText = "間違えた問題の解説を見直して、弱点復習でリベンジしよう！";
+        if (rate === 100) {
+          rank = "S";
+          subText = "全問正解パーフェクト！内分泌・ホルモンの国試対策は完璧です！";
+        } else if (rate >= 80) {
+          rank = "A";
+          subText = "素晴らしい高得点！あと少しでパーフェクトSランクです！";
+        }
+
+        const rec = loadRecord();
+        const rankEl = document.getElementById("kokushiRankBadge");
+        rankEl.textContent = rank;
+        rankEl.className = `rank-badge ${rank}`;
+
+        document.getElementById("kokushiResultSub").textContent = subText;
+        document.getElementById("kokushiFinalScore").textContent = `${correctCount} / ${total}問`;
+        document.getElementById("kokushiFinalRate").textContent = `${rate}%`;
+        document.getElementById("kokushiFinalCleared").textContent = `${rec.clearedIds.length} / ${KOKUSHI_DATA.length}問`;
+
+        const missTitle = document.getElementById("kokushiMissTitle");
+        const missListEl = document.getElementById("kokushiMissList");
+
+        if (sessionMissed.length > 0) {
+          missTitle.textContent = `今回間違えた問題（${sessionMissed.length}問・弱点リストに登録済み）`;
+          missListEl.innerHTML = sessionMissed.map(q => `
+            <div class="kokushi-miss-item">
+              <div class="kokushi-miss-meta">${escapeHtml(q.meta)}（正解：${q.answers.join("・")}）</div>
+              <div class="kokushi-miss-q">${escapeHtml(q.question)}</div>
+              <div style="color:var(--muted);">💡 ${escapeHtml(q.point)}</div>
+            </div>
+          `).join("");
+        } else {
+          missTitle.textContent = "今回の結果";
+          missListEl.innerHTML = `<div class="perfect-box">🎉 全問正解パーフェクト！全${KOKUSHI_DATA.length}問制覇を目指そう！</div>`;
+        }
+
+        const weakBtn = document.getElementById("kokushiResultWeakBtn");
+        if (sessionMissed.length > 0) {
+          weakBtn.style.display = "block";
+          document.getElementById("kokushiResultWeakCount").textContent = String(sessionMissed.length);
+        } else {
+          weakBtn.style.display = "none";
+        }
+
+        showScreen("kokushiResultScreen");
+      }
+
+      function init() {
+        document.getElementById("kokushiEntryBtn").onclick = openStartScreen;
+        document.getElementById("kokushiBtnRand5").onclick = () => startSession("rand5");
+        document.getElementById("kokushiBtnRand10").onclick = () => startSession("rand10");
+        document.getElementById("kokushiBtnAll").onclick = () => startSession("all");
+        document.getElementById("kokushiBtnWeak").onclick = () => startSession("weak");
+        document.getElementById("kokushiNextBtn").onclick = nextQuestion;
+        document.getElementById("kokushiQuitBtn").onclick = openStartScreen;
+        document.getElementById("kokushiResultWeakBtn").onclick = () => startSession("sessionMissed");
+        document.getElementById("kokushiToTopBtn").onclick = openStartScreen;
+
+        const backToBase = () => {
+          playSound("tap");
+          renderStartScreen();
+          showScreen("startScreen");
+        };
+        document.getElementById("kokushiBackToBaseBtn").onclick = backToBase;
+        document.getElementById("kokushiResultBackBtn").onclick = backToBase;
+      }
+
+      return { init, updateEntryBadge };
+    })();
+
+    /**
+     * =========================================================================
+     * 11. イベントリスナー登録・初期化
      * =========================================================================
      */
     document.getElementById("soundToggle").onclick = (e) => {
@@ -1722,73 +2930,74 @@
       if (soundOn) playSound("tap");
     };
 
-    document.getElementById("tabMatchBtn").onclick = () => {
+    // 3タブ切替
+    document.getElementById("tabMatchBtn").onclick = () => { playSound("tap"); activeTab = "match"; renderStartScreen(); };
+    document.getElementById("tabCollectBtn").onclick = () => { playSound("tap"); activeTab = "collect"; renderStartScreen(); };
+    document.getElementById("tabSummaryBtn").onclick = () => { playSound("tap"); activeTab = "summary"; renderStartScreen(); };
+
+    // タブ①：モード切替トグル
+    document.getElementById("modeOrganBtn").onclick = () => {
       playSound("tap");
-      activeGameTab = "match";
+      selectedMatchMode = "organ";
+      renderStartScreen();
+    };
+    document.getElementById("modeActionBtn").onclick = () => {
+      playSound("tap");
+      selectedMatchMode = "action";
       renderStartScreen();
     };
 
-    document.getElementById("tabCollectBtn").onclick = () => {
-      playSound("tap");
-      activeGameTab = "collect";
-      renderStartScreen();
-    };
-
-    document.querySelectorAll(".mode-btn").forEach(btn => {
-      btn.onclick = () => {
-        playSound("tap");
-        document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("selected"));
-        btn.classList.add("selected");
-        selectedMode = btn.dataset.mode;
-        renderStartScreen();
-      };
-    });
-
+    // スタートボタン
     document.getElementById("startMatchBtn").onclick = () => startMatchGame(false);
-    document.getElementById("weakBtn").onclick = () => startMatchGame(true);
-    document.getElementById("startCollectBtn").onclick = () => startCollectGame();
+    document.getElementById("weakMatchBtn").onclick = () => startMatchGame(true);
+    document.getElementById("startCollectBtn").onclick = startCollectGame;
 
-    document.getElementById("quitMatchBtn").onclick = () => {
+    // タブ②：不正解時の「第1問からリトライ」ボタン
+    document.getElementById("collectRetryFromOneBtn").onclick = () => {
+      playSound("tap");
+      loadCollectQuestion(0);
+    };
+
+    // タブ③：検索入力
+    document.getElementById("summarySearch").addEventListener("input", renderCheatList);
+
+    // 戻るボタン
+    const backHome = () => {
       stopTimer();
       playSound("tap");
       renderStartScreen();
       showScreen("startScreen");
     };
+    document.getElementById("quitMatchBtn").onclick = backHome;
+    document.getElementById("quitCollectBtn").onclick = backHome;
+    document.getElementById("backHomeBtn").onclick = backHome;
 
-    document.getElementById("quitCollectBtn").onclick = () => {
-      stopTimer();
-      playSound("tap");
-      renderStartScreen();
-      showScreen("startScreen");
-    };
-
+    // リザルト操作
     document.getElementById("toggleTopicAnswer").onclick = () => {
       playSound("tap");
       document.getElementById("topicAnswer").classList.toggle("open");
     };
 
     document.getElementById("retryBtn").onclick = () => {
-      if (lastPlayedType === "collect") {
+      if (!lastSession) {
+        backHome();
+        return;
+      }
+      if (lastSession.tab === "collect") {
         startCollectGame();
-      } else if (lastPlayedType === "weak") {
-        if (getWeakIds().length === 0) {
-          renderStartScreen();
-          showScreen("startScreen");
-        } else {
-          startMatchGame(true);
-        }
       } else {
-        startMatchGame(false);
+        if (lastSession.isWeakMode && getWeakIds().length === 0) {
+          backHome();
+          return;
+        }
+        selectedMatchMode = lastSession.mode;
+        selectedMatchCourse = lastSession.courseId;
+        startMatchGame(lastSession.isWeakMode);
       }
     };
 
-    document.getElementById("backHomeBtn").onclick = () => {
-      playSound("tap");
-      renderStartScreen();
-      showScreen("startScreen");
-    };
-
-    // 初期描画
+    // 初期化
+    KokushiModule.init();
     renderStartScreen();
   </script>
 </body>
